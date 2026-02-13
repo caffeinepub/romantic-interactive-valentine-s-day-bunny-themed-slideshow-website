@@ -1,0 +1,212 @@
+{
+  "kind": "feature_evidence_report",
+  "features": [
+    {
+      "featureId": "feature-update-the-slideshow-flow-from-the-current-9-screens-to-an-11-page-flow-with-the-following-order-and-navigation-pre-intro-animation-page-1-hey-jaan-continue-page-2-fading-romantic-message-continue-page-3-valentine-question-yes-no-behavior-page-4-happy-dancing-boy-continue-page-5-love-letters-x6-continue-page-6-kiss-boy-continue-page-7-proposal-boy-with-two-affirmative-buttons-page-8-moonrise-envelope-editable-letter-continue-page-9-custom-message-forever-yours-page-10-full-animated-story-long-distance-love-marriage-family-with-5-children-page-11-final-valentine-greeting-last-note-box",
+      "featureTitle": "Update the slideshow flow from the current 9 screens to an 11-page flow with the following order and navigation: (Pre-intro animation) → Page 1 (HEY JAAN ❤️ + Continue) → Page 2 (fading romantic message + Continue) → Page 3 (Valentine question YES/NO behavior) → Page 4 (happy dancing boy + Continue) → Page 5 (Love Letters x6 + Continue ❤️) → Page 6 (kiss boy + Continue) → Page 7 (proposal boy with two affirmative buttons) → Page 8 (moonrise envelope + editable letter + Continue ❤️) → Page 9 (custom message + Forever yours.) → Page 10 (full animated story long-distance→love→marriage→family with 5 children) → Page 11 (final Valentine greeting + last note box).",
+      "files": [
+        "frontend/src/components/ValentineSlideshow.tsx",
+        "frontend/src/components/screens/ScreenClosingNote.tsx",
+        "frontend/src/components/screens/ScreenStoryPage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-31"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-implement-the-new-page-1-welcome-screen-copy-exactly-as-hey-jaan-uppercase-as-shown-with-a-continue-button-replacing-the-existing-hey-cutie-copy",
+      "featureTitle": "Implement the new Page 1 welcome screen copy exactly as “HEY JAAN ❤️” (uppercase as shown) with a Continue button, replacing the existing “Hey cutie ❤️” copy.",
+      "files": [
+        "frontend/src/components/screens/ScreenIntroHey.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-32"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-page-3-valentine-question-to-the-cute-boy-with-glasses-theme-on-the-first-no-click-show-an-angry-cartoon-boy-with-glasses-animation-and-the-text-exactly-wrong-answer-try-again-then-automatically-return-to-the-question-state-on-the-second-no-attempt-fade-out-and-disable-the-no-option-on-yes-transition-to-page-4-with-a-celebratory-heart-stars-moon-confetti-style-effect",
+      "featureTitle": "Update Page 3 (Valentine question) to the “cute boy with glasses” theme: on the first NO click, show an angry cartoon boy with glasses animation and the text exactly “Wrong answer! Try again 😤”, then automatically return to the question state; on the second NO attempt, fade out and disable the NO option; on YES, transition to Page 4 with a celebratory heart + stars + moon confetti-style effect.",
+      "files": [
+        "frontend/src/components/effects/ValentineSkyConfetti.tsx",
+        "frontend/src/components/screens/ScreenValentineQuestion.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-34"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-page-4-to-show-a-happy-dancing-cartoon-boy-with-glasses-not-bunny-panda-and-display-the-text-exactly-you-just-made-me-the-happiest-person-alive-including-the-double-space-before-the-emoji-as-provided-with-a-sparkly-continue-button",
+      "featureTitle": "Update Page 4 to show a happy dancing cartoon boy with glasses (not bunny/panda) and display the text exactly “You just made me the happiest person alive!  💞” (including the double space before the emoji as provided), with a sparkly Continue button.",
+      "files": [
+        "frontend/src/components/screens/ScreenHappyPanda.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-35"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-page-6-kiss-to-the-cute-boy-with-glasses-theme-show-a-boy-with-glasses-blowing-kisses-animation-fade-in-the-text-exactly-if-i-could-i-d-kiss-you-a-thousand-times-right-now-including-the-trailing-space-shown-with-soft-heart-particles-floating-in-the-background-and-a-continue-button",
+      "featureTitle": "Update Page 6 (Kiss) to the “cute boy with glasses” theme: show a boy with glasses blowing kisses animation; fade in the text exactly “If I could, I’d kiss you a thousand times right now 💋 ” (including the trailing space shown), with soft heart particles floating in the background, and a Continue button.",
+      "files": [
+        "frontend/src/components/screens/ScreenKissPanda.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-37"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-page-7-proposal-to-the-cute-boy-with-glasses-theme-show-a-boy-with-glasses-kneeling-with-a-ring-animation-update-the-proposal-question-text-exactly-to-will-you-marry-me-in-future-provide-exactly-two-affirmative-buttons-of-course-and-always-selecting-either-shows-a-cute-happy-boy-with-glasses-celebration-accent-then-advances-to-page-8",
+      "featureTitle": "Update Page 7 (Proposal) to the “cute boy with glasses” theme: show a boy with glasses kneeling with a ring animation; update the proposal question text exactly to “Will you marry me in future? 💍”; provide exactly two affirmative buttons: “👉 Of course ❤️” and “👉 Always ❤️”; selecting either shows a cute happy boy-with-glasses celebration accent then advances to Page 8.",
+      "files": [
+        "frontend/src/components/screens/ScreenProposalPanda.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-38"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-refactor-the-current-final-page-so-page-9-is-a-dedicated-custom-message-page-with-a-cute-boy-with-glasses-animation-on-the-page-containing-a-glowing-text-box-labeled-exactly-my-message-to-you-floating-hearts-and-the-romantic-ending-line-exactly-forever-yours-without-extra-emoji",
+      "featureTitle": "Refactor the current final page so Page 9 is a dedicated “Custom Message” page (with a cute boy-with-glasses animation on the page), containing a glowing text box labeled exactly “My message to you…”, floating hearts, and the romantic ending line exactly “Forever yours.” (without extra emoji).",
+      "files": [
+        "frontend/src/components/screens/ScreenFinalMessage.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-40"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-new-page-10-that-presents-a-full-animated-story-sequence-in-a-beautiful-cartoon-style-that-depicts-long-distance-love-marriage-family-with-5-children-the-story-must-be-viewable-on-mobile-and-must-respect-reduced-motion-preferences-no-auto-advance-when-reduced-motion-is-enabled",
+      "featureTitle": "Add a new Page 10 that presents a full animated story sequence in a beautiful cartoon style that depicts: long-distance → love → marriage → family with 5 children. The story must be viewable on mobile and must respect reduced-motion preferences (no auto-advance when reduced motion is enabled).",
+      "files": [
+        "frontend/src/components/screens/ScreenStoryPage.tsx",
+        "frontend/src/components/story/LoveStoryAnimation.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-41"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-add-a-new-page-11-closing-screen-that-displays-the-text-exactly-happy-valentine-day-my-love-my-future-wifey-and-includes-an-editable-note-box-where-the-user-can-write-a-final-note",
+      "featureTitle": "Add a new Page 11 closing screen that displays the text exactly “Happy Valentine Day my love my future wifey” and includes an editable note box where the user can write a final note.",
+      "files": [
+        "frontend/src/components/ValentineSlideshow.tsx",
+        "frontend/src/components/screens/ScreenClosingNote.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-42"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-update-the-pre-page-1-intro-animation-to-match-the-requested-theme-happy-valentine-day-love-with-hearts-while-keeping-the-existing-reduced-motion-fallback-behavior-intact",
+      "featureTitle": "Update the pre-Page 1 intro animation to match the requested theme “Happy Valentine Day love with hearts” while keeping the existing reduced-motion fallback behavior intact.",
+      "files": [
+        "frontend/src/components/intro/PreIntroAnimation.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-43"
+      ],
+      "confidence": "high"
+    },
+    {
+      "featureId": "feature-remove-remaining-bunny-panda-references-from-user-facing-copy-and-alt-text-across-all-pages-being-updated-and-standardize-the-experience-to-a-consistent-cute-boy-with-glasses-theme-throughout",
+      "featureTitle": "Remove remaining bunny/panda references from user-facing copy and alt text across all pages being updated, and standardize the experience to a consistent “cute boy with glasses” theme throughout.",
+      "files": [
+        "frontend/src/components/screens/ScreenFinalMessage.tsx",
+        "frontend/src/components/screens/ScreenHappyPanda.tsx",
+        "frontend/src/components/screens/ScreenKissPanda.tsx",
+        "frontend/src/components/screens/ScreenProposalPanda.tsx",
+        "frontend/src/components/screens/ScreenValentineQuestion.tsx"
+      ],
+      "components": [
+        "core-infrastructure@1.0.2",
+        "shadcn-ui@1.0.0",
+        "build-template-react@1.0.0",
+        "initial-app@1.0.0",
+        "github-export-icp-cli@1.0.0"
+      ],
+      "testIds": [
+        "REQ-44"
+      ],
+      "confidence": "high"
+    }
+  ]
+}

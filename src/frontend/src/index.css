@@ -1,0 +1,442 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 1.5rem;
+        
+        /* Romantic pastel pink palette */
+        --romantic-pink: 0.92 0.15 10;
+        --romantic-pink-light: 0.96 0.08 10;
+        --romantic-lavender: 0.88 0.12 300;
+        --romantic-white: 0.99 0 0;
+        --romantic-dark: 0.45 0.08 10;
+        
+        --background: 0.98 0.05 20;
+        --foreground: 0.35 0.08 10;
+        --card: 0.99 0.02 10;
+        --card-foreground: 0.35 0.08 10;
+        --popover: 0.99 0.02 10;
+        --popover-foreground: 0.35 0.08 10;
+        --primary: 0.75 0.18 350;
+        --primary-foreground: 0.99 0 0;
+        --secondary: 0.95 0.08 20;
+        --secondary-foreground: 0.35 0.08 10;
+        --muted: 0.96 0.05 20;
+        --muted-foreground: 0.55 0.06 10;
+        --accent: 0.88 0.12 300;
+        --accent-foreground: 0.35 0.08 10;
+        --destructive: 0.577 0.245 27.325;
+        --destructive-foreground: 0.985 0 0;
+        --border: 0.92 0.08 10;
+        --input: 0.92 0.08 10;
+        --ring: 0.75 0.18 350;
+    }
+
+    .dark {
+        --background: 0.25 0.08 10;
+        --foreground: 0.95 0.05 10;
+        --card: 0.30 0.08 10;
+        --card-foreground: 0.95 0.05 10;
+        --popover: 0.30 0.08 10;
+        --popover-foreground: 0.95 0.05 10;
+        --primary: 0.80 0.18 350;
+        --primary-foreground: 0.99 0 0;
+        --secondary: 0.35 0.08 10;
+        --secondary-foreground: 0.95 0.05 10;
+        --muted: 0.35 0.08 10;
+        --muted-foreground: 0.65 0.06 10;
+        --accent: 0.70 0.15 300;
+        --accent-foreground: 0.95 0.05 10;
+        --border: 0.40 0.08 10;
+        --input: 0.40 0.08 10;
+        --ring: 0.75 0.18 350;
+    }
+
+    * {
+        @apply border-border;
+    }
+    
+    body {
+        @apply bg-gradient-to-br from-romantic-pink-light via-romantic-white to-romantic-lavender text-foreground;
+        font-family: 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+        background-attachment: fixed;
+    }
+}
+
+@layer utilities {
+    /* Custom romantic colors */
+    .text-romantic-primary {
+        color: oklch(var(--romantic-pink));
+    }
+    
+    .text-romantic-dark {
+        color: oklch(var(--romantic-dark));
+    }
+    
+    .text-romantic-accent {
+        color: oklch(var(--romantic-lavender));
+    }
+    
+    .bg-romantic-primary {
+        background-color: oklch(var(--romantic-pink));
+    }
+    
+    .bg-romantic-pink-light {
+        background-color: oklch(var(--romantic-pink-light));
+    }
+    
+    .bg-romantic-lavender {
+        background-color: oklch(var(--romantic-lavender));
+    }
+    
+    .bg-romantic-white {
+        background-color: oklch(var(--romantic-white));
+    }
+    
+    .border-romantic-primary {
+        border-color: oklch(var(--romantic-pink));
+    }
+
+    /* Shadows and glows */
+    .shadow-romantic {
+        box-shadow: 0 10px 40px -10px oklch(var(--romantic-pink) / 0.4),
+                    0 4px 12px -4px oklch(var(--romantic-pink) / 0.3);
+    }
+    
+    .shadow-glow {
+        box-shadow: 0 0 30px oklch(var(--romantic-pink) / 0.3),
+                    0 0 60px oklch(var(--romantic-lavender) / 0.2);
+    }
+
+    /* Button styles */
+    .valentine-button {
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+    
+    .valentine-button-yes {
+        background: linear-gradient(135deg, oklch(var(--romantic-pink)) 0%, oklch(var(--romantic-lavender)) 100%);
+        color: white;
+    }
+    
+    .valentine-button-no {
+        background: linear-gradient(135deg, oklch(var(--romantic-lavender)) 0%, oklch(var(--romantic-pink)) 100%);
+        color: white;
+    }
+    
+    .valentine-button-sparkle {
+        background: linear-gradient(135deg, oklch(var(--romantic-pink)) 0%, oklch(var(--romantic-pink-light)) 50%, oklch(var(--romantic-lavender)) 100%);
+        color: white;
+        animation: sparkle-pulse 2s ease-in-out infinite;
+    }
+
+    /* Animations */
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0) rotate(0deg);
+        }
+        50% {
+            transform: translateY(-20px) rotate(5deg);
+        }
+    }
+    
+    @keyframes float-ambient {
+        0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+        }
+        25% {
+            transform: translate(10px, -15px) rotate(5deg);
+        }
+        50% {
+            transform: translate(-5px, -30px) rotate(-5deg);
+        }
+        75% {
+            transform: translate(-15px, -15px) rotate(3deg);
+        }
+    }
+    
+    @keyframes float-slow {
+        0%, 100% {
+            transform: translateY(0) scale(1);
+        }
+        50% {
+            transform: translateY(-30px) scale(1.1);
+        }
+    }
+    
+    @keyframes dance {
+        0%, 100% {
+            transform: rotate(-5deg) scale(1);
+        }
+        25% {
+            transform: rotate(5deg) scale(1.05);
+        }
+        50% {
+            transform: rotate(-5deg) scale(1);
+        }
+        75% {
+            transform: rotate(5deg) scale(1.05);
+        }
+    }
+    
+    @keyframes kiss {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.1);
+        }
+    }
+    
+    @keyframes proposal {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    @keyframes shake {
+        0%, 100% {
+            transform: translateX(0);
+        }
+        25% {
+            transform: translateX(-10px) rotate(-2deg);
+        }
+        75% {
+            transform: translateX(10px) rotate(2deg);
+        }
+    }
+    
+    @keyframes confetti-fall {
+        0% {
+            transform: translateY(0) rotate(0deg);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(100vh) rotate(360deg);
+            opacity: 0;
+        }
+    }
+    
+    @keyframes sparkle-pulse {
+        0%, 100% {
+            box-shadow: 0 0 20px oklch(var(--romantic-pink) / 0.5);
+        }
+        50% {
+            box-shadow: 0 0 40px oklch(var(--romantic-lavender) / 0.8);
+        }
+    }
+    
+    @keyframes pulse-soft {
+        0%, 100% {
+            opacity: 1;
+        }
+        50% {
+            opacity: 0.7;
+        }
+    }
+
+    @keyframes celebration-bounce {
+        0%, 100% {
+            transform: scale(1) rotate(0deg);
+        }
+        25% {
+            transform: scale(1.3) rotate(-10deg);
+        }
+        50% {
+            transform: scale(1.5) rotate(10deg);
+        }
+        75% {
+            transform: scale(1.3) rotate(-5deg);
+        }
+    }
+
+    @keyframes envelope-open {
+        0% {
+            transform: rotateX(0deg);
+        }
+        100% {
+            transform: rotateX(15deg);
+        }
+    }
+
+    @keyframes letter-emerge {
+        0% {
+            transform: translateY(100px) scale(0.8);
+            opacity: 0;
+        }
+        100% {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+    }
+
+    @keyframes pre-intro-pulse {
+        0%, 100% {
+            transform: scale(1);
+        }
+        50% {
+            transform: scale(1.15);
+        }
+    }
+
+    @keyframes pre-intro-orbit-1 {
+        0% {
+            transform: rotate(0deg) translateX(80px) rotate(0deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(360deg) translateX(80px) rotate(-360deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes pre-intro-orbit-2 {
+        0% {
+            transform: rotate(120deg) translateX(70px) rotate(-120deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(480deg) translateX(70px) rotate(-480deg);
+            opacity: 1;
+        }
+    }
+
+    @keyframes pre-intro-orbit-3 {
+        0% {
+            transform: rotate(240deg) translateX(75px) rotate(-240deg);
+            opacity: 0;
+        }
+        20% {
+            opacity: 1;
+        }
+        100% {
+            transform: rotate(600deg) translateX(75px) rotate(-600deg);
+            opacity: 1;
+        }
+    }
+
+    .animate-fade-in {
+        animation: fade-in 1s ease-out forwards;
+    }
+    
+    .animate-float {
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    .animate-float-ambient {
+        animation: float-ambient 12s ease-in-out infinite;
+    }
+    
+    .animate-float-slow {
+        animation: float-slow 6s ease-in-out infinite;
+    }
+    
+    .animate-dance {
+        animation: dance 1s ease-in-out infinite;
+    }
+    
+    .animate-kiss {
+        animation: kiss 2s ease-in-out infinite;
+    }
+    
+    .animate-proposal {
+        animation: proposal 2s ease-in-out infinite;
+    }
+    
+    .animate-shake {
+        animation: shake 0.5s ease-in-out;
+    }
+    
+    .animate-confetti-fall {
+        animation: confetti-fall 2s ease-out forwards;
+    }
+    
+    .animate-sparkle {
+        animation: sparkle-pulse 2s ease-in-out infinite;
+    }
+    
+    .animate-pulse-soft {
+        animation: pulse-soft 3s ease-in-out infinite;
+    }
+
+    .animate-celebration-bounce {
+        animation: celebration-bounce 1.5s ease-out;
+    }
+
+    .animate-envelope-open {
+        animation: envelope-open 1s ease-out forwards;
+    }
+
+    .animate-letter-emerge {
+        animation: letter-emerge 1s ease-out forwards;
+    }
+
+    .animate-pre-intro-pulse {
+        animation: pre-intro-pulse 1.4s ease-in-out infinite;
+    }
+
+    .animate-pre-intro-orbit-1 {
+        animation: pre-intro-orbit-1 1.4s linear infinite;
+    }
+
+    .animate-pre-intro-orbit-2 {
+        animation: pre-intro-orbit-2 1.4s linear infinite;
+    }
+
+    .animate-pre-intro-orbit-3 {
+        animation: pre-intro-orbit-3 1.4s linear infinite;
+    }
+
+    /* Reduced motion support */
+    @media (prefers-reduced-motion: reduce) {
+        .animate-fade-in,
+        .animate-float,
+        .animate-float-ambient,
+        .animate-float-slow,
+        .animate-dance,
+        .animate-kiss,
+        .animate-proposal,
+        .animate-shake,
+        .animate-confetti-fall,
+        .animate-sparkle,
+        .animate-pulse-soft,
+        .animate-celebration-bounce,
+        .animate-envelope-open,
+        .animate-letter-emerge,
+        .animate-pre-intro-pulse,
+        .animate-pre-intro-orbit-1,
+        .animate-pre-intro-orbit-2,
+        .animate-pre-intro-orbit-3 {
+            animation: none;
+        }
+        
+        * {
+            animation-duration: 0.01ms !important;
+            animation-iteration-count: 1 !important;
+            transition-duration: 0.01ms !important;
+        }
+    }
+}

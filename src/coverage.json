@@ -1,0 +1,234 @@
+{
+  "kind": "coverage_report",
+  "version": "1.0",
+  "generatedAt": "2026-02-13T15:12:41.872Z",
+  "sources": {
+    "buildRequest": true,
+    "implementationPlan": true
+  },
+  "requirements": {
+    "total": 14,
+    "implemented": 11,
+    "items": [
+      {
+        "id": "REQ-31",
+        "summary": "Update the slideshow flow from the current 9 screens to an 11-page flow with the following order and navigation: (Pre-intro animation) → Page 1 (HEY JAAN ❤️ + Continue) → Page 2 (fading romantic message + Continue) → Page 3 (Valentine question YES/NO behavior) → Page 4 (happy dancing boy + Continue) → Page 5 (Love Letters x6 + Continue ❤️) → Page 6 (kiss boy + Continue) → Page 7 (proposal boy with two affirmative buttons) → Page 8 (moonrise envelope + editable letter + Continue ❤️) → Page 9 (custom message + Forever yours.) → Page 10 (full animated story long-distance→love→marriage→family with 5 children) → Page 11 (final Valentine greeting + last note box).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/ValentineSlideshow.tsx",
+          "frontend/src/components/screens/ScreenStoryPage.tsx",
+          "frontend/src/components/screens/ScreenClosingNote.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/ValentineSlideshow.tsx",
+          "frontend/src/components/screens/ScreenStoryPage.tsx",
+          "frontend/src/components/screens/ScreenClosingNote.tsx"
+        ]
+      },
+      {
+        "id": "REQ-32",
+        "summary": "Implement the new Page 1 welcome screen copy exactly as “HEY JAAN ❤️” (uppercase as shown) with a Continue button, replacing the existing “Hey cutie ❤️” copy.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenIntroHey.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenIntroHey.tsx"
+        ]
+      },
+      {
+        "id": "REQ-33",
+        "summary": "Keep Page 2 as a dedicated intro message page where the message “You make my world brighter every day… and I want to ask you something special.” fades in, with a Continue button to proceed.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenIntroMessage.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-34",
+        "summary": "Update Page 3 (Valentine question) to the “cute boy with glasses” theme: on the first NO click, show an angry cartoon boy with glasses animation and the text exactly “Wrong answer! Try again 😤”, then automatically return to the question state; on the second NO attempt, fade out and disable the NO option; on YES, transition to Page 4 with a celebratory heart + stars + moon confetti-style effect.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+          "frontend/src/components/effects/ValentineSkyConfetti.tsx",
+          "frontend/public/assets/generated/boy-glasses-angry.dim_800x800.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+          "frontend/src/components/effects/ValentineSkyConfetti.tsx",
+          "frontend/public/assets/generated/boy-glasses-angry.dim_800x800.png"
+        ]
+      },
+      {
+        "id": "REQ-35",
+        "summary": "Update Page 4 to show a happy dancing cartoon boy with glasses (not bunny/panda) and display the text exactly “You just made me the happiest person alive!  💞” (including the double space before the emoji as provided), with a sparkly Continue button.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenHappyPanda.tsx",
+          "frontend/public/assets/generated/boy-glasses-happy-dance.dim_800x800.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenHappyPanda.tsx",
+          "frontend/public/assets/generated/boy-glasses-happy-dance.dim_800x800.png"
+        ]
+      },
+      {
+        "id": "REQ-36",
+        "summary": "Keep Page 5 (Love Letters Gallery) as 6 clickable envelope/letter cards; each opened letter must include: (1) a pasteable photo placeholder, (2) the caption under the photo in this exact order: “My favorite smile”, “My happy peace”, “My forever girl”, “My heart”, “My life”, “My future wifey”, and (3) an editable notes box for writing a personal note; include a “Continue ❤️” button.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenLoveLetters.tsx",
+          "frontend/src/components/loveletters/LoveLetterCard.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-37",
+        "summary": "Update Page 6 (Kiss) to the “cute boy with glasses” theme: show a boy with glasses blowing kisses animation; fade in the text exactly “If I could, I’d kiss you a thousand times right now 💋 ” (including the trailing space shown), with soft heart particles floating in the background, and a Continue button.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenKissPanda.tsx",
+          "frontend/public/assets/generated/boy-glasses-kiss.dim_800x800.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenKissPanda.tsx",
+          "frontend/public/assets/generated/boy-glasses-kiss.dim_800x800.png"
+        ]
+      },
+      {
+        "id": "REQ-38",
+        "summary": "Update Page 7 (Proposal) to the “cute boy with glasses” theme: show a boy with glasses kneeling with a ring animation; update the proposal question text exactly to “Will you marry me in future? 💍”; provide exactly two affirmative buttons: “👉 Of course ❤️” and “👉 Always ❤️”; selecting either shows a cute happy boy-with-glasses celebration accent then advances to Page 8.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenProposalPanda.tsx",
+          "frontend/public/assets/generated/boy-glasses-proposal.dim_800x800.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenProposalPanda.tsx",
+          "frontend/public/assets/generated/boy-glasses-proposal.dim_800x800.png"
+        ]
+      },
+      {
+        "id": "REQ-39",
+        "summary": "Keep Page 8 as the moonrise envelope/letter reveal sequence and ensure it remains editable (user can type anything), then provide a Continue button to advance.",
+        "status": "missing",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenMoonriseLetter.tsx"
+        ],
+        "matchedFiles": []
+      },
+      {
+        "id": "REQ-40",
+        "summary": "Refactor the current final page so Page 9 is a dedicated “Custom Message” page (with a cute boy-with-glasses animation on the page), containing a glowing text box labeled exactly “My message to you…”, floating hearts, and the romantic ending line exactly “Forever yours.” (without extra emoji).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenFinalMessage.tsx",
+          "frontend/public/assets/generated/boy-glasses-final.dim_800x800.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenFinalMessage.tsx",
+          "frontend/public/assets/generated/boy-glasses-final.dim_800x800.png"
+        ]
+      },
+      {
+        "id": "REQ-41",
+        "summary": "Add a new Page 10 that presents a full animated story sequence in a beautiful cartoon style that depicts: long-distance → love → marriage → family with 5 children. The story must be viewable on mobile and must respect reduced-motion preferences (no auto-advance when reduced motion is enabled).",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenStoryPage.tsx",
+          "frontend/src/components/story/LoveStoryAnimation.tsx",
+          "frontend/public/assets/generated/boy-story-1.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-2.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-3.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-4.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-5.dim_900x900.png"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenStoryPage.tsx",
+          "frontend/src/components/story/LoveStoryAnimation.tsx",
+          "frontend/public/assets/generated/boy-story-1.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-2.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-3.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-4.dim_900x900.png",
+          "frontend/public/assets/generated/boy-story-5.dim_900x900.png"
+        ]
+      },
+      {
+        "id": "REQ-42",
+        "summary": "Add a new Page 11 closing screen that displays the text exactly “Happy Valentine Day my love my future wifey” and includes an editable note box where the user can write a final note.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenClosingNote.tsx",
+          "frontend/src/components/ValentineSlideshow.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenClosingNote.tsx",
+          "frontend/src/components/ValentineSlideshow.tsx"
+        ]
+      },
+      {
+        "id": "REQ-43",
+        "summary": "Update the pre-Page 1 intro animation to match the requested theme “Happy Valentine Day love with hearts” while keeping the existing reduced-motion fallback behavior intact.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/intro/PreIntroAnimation.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/intro/PreIntroAnimation.tsx"
+        ]
+      },
+      {
+        "id": "REQ-44",
+        "summary": "Remove remaining bunny/panda references from user-facing copy and alt text across all pages being updated, and standardize the experience to a consistent “cute boy with glasses” theme throughout.",
+        "status": "implemented",
+        "plannedFiles": [
+          "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+          "frontend/src/components/screens/ScreenHappyPanda.tsx",
+          "frontend/src/components/screens/ScreenKissPanda.tsx",
+          "frontend/src/components/screens/ScreenProposalPanda.tsx",
+          "frontend/src/components/screens/ScreenFinalMessage.tsx"
+        ],
+        "matchedFiles": [
+          "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+          "frontend/src/components/screens/ScreenHappyPanda.tsx",
+          "frontend/src/components/screens/ScreenKissPanda.tsx",
+          "frontend/src/components/screens/ScreenProposalPanda.tsx",
+          "frontend/src/components/screens/ScreenFinalMessage.tsx"
+        ]
+      }
+    ]
+  },
+  "changedFiles": [
+    "build-request.json",
+    "feature_evidence.json",
+    "frontend-file-summaries.txt",
+    "frontend-implementation-plan.json",
+    "frontend/public/assets/generated/boy-glasses-angry.dim_800x800.png",
+    "frontend/public/assets/generated/boy-glasses-final.dim_800x800.png",
+    "frontend/public/assets/generated/boy-glasses-happy-dance.dim_800x800.png",
+    "frontend/public/assets/generated/boy-glasses-kiss.dim_800x800.png",
+    "frontend/public/assets/generated/boy-glasses-proposal.dim_800x800.png",
+    "frontend/public/assets/generated/boy-story-1.dim_900x900.png",
+    "frontend/public/assets/generated/boy-story-2.dim_900x900.png",
+    "frontend/public/assets/generated/boy-story-3.dim_900x900.png",
+    "frontend/public/assets/generated/boy-story-4.dim_900x900.png",
+    "frontend/public/assets/generated/boy-story-5.dim_900x900.png",
+    "frontend/src/components/ValentineSlideshow.tsx",
+    "frontend/src/components/effects/ValentineSkyConfetti.tsx",
+    "frontend/src/components/intro/PreIntroAnimation.tsx",
+    "frontend/src/components/screens/ScreenClosingNote.tsx",
+    "frontend/src/components/screens/ScreenFinalMessage.tsx",
+    "frontend/src/components/screens/ScreenHappyPanda.tsx",
+    "frontend/src/components/screens/ScreenIntroHey.tsx",
+    "frontend/src/components/screens/ScreenKissPanda.tsx",
+    "frontend/src/components/screens/ScreenProposalPanda.tsx",
+    "frontend/src/components/screens/ScreenStoryPage.tsx",
+    "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+    "frontend/src/components/story/LoveStoryAnimation.tsx",
+    "project_state.json",
+    "scratch/component-selection.json",
+    "spec.md",
+    "spec_vs_diff_report.json"
+  ]
+}

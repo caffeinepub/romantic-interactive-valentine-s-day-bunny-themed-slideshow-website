@@ -1,0 +1,331 @@
+{
+  "kind": "implementation_plan",
+  "version": "1.0",
+  "title": "Switch Valentine slideshow to 11-page cute boy-with-glasses love story flow",
+  "requirements": [
+    {
+      "id": "REQ-31",
+      "summary": "Restructure slideshow controller from 9 screens to an 11-page flow with consistent transitions and preserved onUserInteraction behavior.",
+      "acceptanceCriteria": [
+        "The slideshow controller advances through exactly 11 pages (not counting the pre-intro overlay), and does not stop at 9.",
+        "All existing per-page transition timing behavior remains smooth and consistent with current transitions.",
+        "The slideshow still calls the provided onUserInteraction callback on any user-driven advance or answer so music autoplay gating continues to work."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/ValentineSlideshow.tsx",
+          "operation": "modify",
+          "description": "Update the slideshow state machine to support 11 pages (cap navigation at 11), render the new Page 10 and Page 11 screens, and preserve the existing transition timing + onUserInteraction call on user-driven advances."
+        },
+        {
+          "path": "frontend/src/components/screens/ScreenStoryPage.tsx",
+          "operation": "create",
+          "description": "Add a dedicated Page 10 screen that hosts the full animated story sequence (long-distance → love → marriage → family with 5 children) and provides navigation onward in the 11-page flow."
+        },
+        {
+          "path": "frontend/src/components/screens/ScreenClosingNote.tsx",
+          "operation": "create",
+          "description": "Add a dedicated Page 11 closing screen with the required final greeting text and an editable last-note box, wired as the final slideshow page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-32",
+      "summary": "Update Page 1 welcome copy to “HEY JAAN ❤️” with a Continue button.",
+      "acceptanceCriteria": [
+        "Page 1 displays the text exactly “HEY JAAN ❤️”.",
+        "A visible Continue button advances to Page 2."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenIntroHey.tsx",
+          "operation": "modify",
+          "description": "Replace the existing Page 1 greeting text with the exact uppercase copy “HEY JAAN ❤️” and keep the Continue button advancing to the next page."
+        }
+      ]
+    },
+    {
+      "id": "REQ-33",
+      "summary": "Keep Page 2 as a fading romantic message with a Continue button.",
+      "acceptanceCriteria": [
+        "The Page 2 message fades in after page load (or after a short delay) and matches the text exactly.",
+        "Continue advances to Page 3."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenIntroMessage.tsx",
+          "operation": "modify",
+          "description": "Ensure the Page 2 message text matches exactly “You make my world brighter every day… and I want to ask you something special.” and preserves the existing fade-in timing behavior with a Continue button to proceed."
+        }
+      ]
+    },
+    {
+      "id": "REQ-34",
+      "summary": "Update Page 3 Valentine question to cute boy-with-glasses theme with NO attempt behavior and YES celebration overlay (hearts+stars+moon).",
+      "acceptanceCriteria": [
+        "The question remains exactly “Will you be my Valentine?” with the two buttons “👉 YES 💖” and “👉 NO 😠”.",
+        "First NO shows the angry boy-with-glasses animation + the exact text “Wrong answer! Try again 😤”, then returns to the question automatically.",
+        "Second NO fades out and becomes unclickable/disabled.",
+        "YES triggers a celebratory overlay that includes hearts plus star and moon elements before advancing to Page 4."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+          "operation": "modify",
+          "description": "Swap bunny/panda visuals for the angry boy-with-glasses image, update the first-NO message to exactly “Wrong answer! Try again 😤”, preserve the two-button question state and second-NO fade/disable behavior, and trigger a celebration overlay on YES that includes hearts plus star and moon elements before advancing."
+        },
+        {
+          "path": "frontend/src/components/effects/ValentineSkyConfetti.tsx",
+          "operation": "create",
+          "description": "Create a reduced-motion-aware celebratory overlay effect that includes hearts plus star and moon elements, for use on Page 3 acceptance."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-glasses-angry.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated static asset for the Page 3 angry boy-with-glasses visual at frontend/public/assets/generated/boy-glasses-angry.dim_800x800.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-35",
+      "summary": "Update Page 4 to happy dancing boy-with-glasses with exact text and sparkly Continue button.",
+      "acceptanceCriteria": [
+        "Page 4 uses boy-with-glasses imagery and no bunny/panda references in visuals or alt text.",
+        "The displayed sentence matches exactly “You just made me the happiest person alive!  💞”.",
+        "Continue button is present and includes sparkly styling/animation."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenHappyPanda.tsx",
+          "operation": "modify",
+          "description": "Replace bunny/panda imagery and alt text with the happy dancing boy-with-glasses asset, update the displayed sentence to match exactly “You just made me the happiest person alive!  💞” (including the double space), and keep the sparkly-styled Continue button behavior."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-glasses-happy-dance.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated static asset for the Page 4 happy dancing boy-with-glasses visual at frontend/public/assets/generated/boy-glasses-happy-dance.dim_800x800.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-36",
+      "summary": "Keep Page 5 as a 6-letter gallery with photo paste placeholders, ordered captions, editable notes, and Continue ❤️.",
+      "acceptanceCriteria": [
+        "There are exactly 6 letter cards, each opens on click with a cute opening animation and floating hearts.",
+        "Each opened letter contains a pasteable photo area and a notes input/textarea.",
+        "Captions match the specified text exactly and are shown in the specified order.",
+        "A “Continue ❤️” button advances to Page 6."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenLoveLetters.tsx",
+          "operation": "modify",
+          "description": "Verify Page 5 remains exactly 6 letter cards with the required caption texts in the required order, retains photo-paste placeholders and editable notes, and keeps the “Continue ❤️” navigation to Page 6."
+        },
+        {
+          "path": "frontend/src/components/loveletters/LoveLetterCard.tsx",
+          "operation": "modify",
+          "description": "Verify the opened letter view includes the pasteable photo area, editable notes box, and floating hearts effect; adjust only as needed to meet the Page 5 interaction/animation acceptance criteria."
+        }
+      ]
+    },
+    {
+      "id": "REQ-37",
+      "summary": "Update Page 6 Kiss screen to boy-with-glasses theme with exact fade-in text, heart particles, and Continue.",
+      "acceptanceCriteria": [
+        "Boy-with-glasses kiss imagery is used (no bunny/panda).",
+        "Text matches exactly “If I could, I’d kiss you a thousand times right now 💋 ”.",
+        "Soft heart particle background is visible (with reduced-motion fallback preserved).",
+        "Continue advances to Page 7."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenKissPanda.tsx",
+          "operation": "modify",
+          "description": "Replace bunny/panda imagery and alt text with the boy-with-glasses blowing-kisses asset, update the fading text to match exactly “If I could, I’d kiss you a thousand times right now 💋 ” (including trailing space), and keep the HeartParticleField background respecting reduced motion."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-glasses-kiss.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated static asset for the Page 6 boy-with-glasses kiss visual at frontend/public/assets/generated/boy-glasses-kiss.dim_800x800.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-38",
+      "summary": "Update Page 7 Proposal screen to boy-with-glasses theme with exact question text and two affirmative buttons only.",
+      "acceptanceCriteria": [
+        "The proposal text matches exactly “Will you marry me in future? 💍”.",
+        "Only two buttons are shown: “👉 Of course ❤️” and “👉 Always ❤️”; no negative option exists.",
+        "On selection, a celebration accent plays briefly, then navigation proceeds to Page 8."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenProposalPanda.tsx",
+          "operation": "modify",
+          "description": "Replace bunny/panda imagery and alt text with the boy-with-glasses proposal asset, update proposal question text to exactly “Will you marry me in future? 💍”, render exactly two affirmative buttons labeled “👉 Of course ❤️” and “👉 Always ❤️”, and play a brief celebration accent before advancing."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-glasses-proposal.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated static asset for the Page 7 boy-with-glasses proposal visual at frontend/public/assets/generated/boy-glasses-proposal.dim_800x800.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-39",
+      "summary": "Keep Page 8 moonrise envelope reveal with editable letter content and Continue.",
+      "acceptanceCriteria": [
+        "A moonrise scene appears, the envelope opens, and a letter emerges.",
+        "The letter contains an editable text area.",
+        "Continue advances to Page 9."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenMoonriseLetter.tsx",
+          "operation": "modify",
+          "description": "Preserve the moonrise envelope/letter reveal sequence and ensure the letter remains editable; verify the Continue button advances to the next page in the updated 11-page flow."
+        }
+      ]
+    },
+    {
+      "id": "REQ-40",
+      "summary": "Refactor the former final page into Page 9 Custom Message with boy-with-glasses animation, labeled glowing text box, floating hearts, and exact “Forever yours.” line.",
+      "acceptanceCriteria": [
+        "Page 9 shows a boy-with-glasses visual element/animation.",
+        "The heading/label is exactly “My message to you…”.",
+        "The ending line is exactly “Forever yours.” (no additional emoji).",
+        "The Love Story animation content is not shown on Page 9 (it is moved to Page 10)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenFinalMessage.tsx",
+          "operation": "modify",
+          "description": "Refactor this screen to be Page 9 only: include a boy-with-glasses visual using frontend/public/assets/generated/boy-glasses-final.dim_800x800.png, keep the label exactly “My message to you…”, keep a glowing editable text box, add floating hearts, and change the ending line to exactly “Forever yours.” while removing the embedded LoveStoryAnimation section from this page."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-glasses-final.dim_800x800.png",
+          "operation": "create",
+          "description": "Add the generated static asset for the Page 9 boy-with-glasses custom message visual at frontend/public/assets/generated/boy-glasses-final.dim_800x800.png."
+        }
+      ]
+    },
+    {
+      "id": "REQ-41",
+      "summary": "Add Page 10 as a mobile-friendly animated story sequence (long-distance → love → marriage → family with 5 children) respecting reduced-motion preferences.",
+      "acceptanceCriteria": [
+        "Page 10 exists as its own page in the slideshow after Page 9.",
+        "The story sequence clearly includes a family outcome that corresponds to 5 children.",
+        "When prefers-reduced-motion is enabled, the story does not auto-advance (manual navigation is still possible)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenStoryPage.tsx",
+          "operation": "create",
+          "description": "Implement Page 10 as its own slideshow screen that presents the full story sequence (long-distance → love → marriage → family with 5 children), remains viewable on mobile, and does not auto-advance when prefers-reduced-motion is enabled (manual navigation remains available)."
+        },
+        {
+          "path": "frontend/src/components/story/LoveStoryAnimation.tsx",
+          "operation": "modify",
+          "description": "Update the story frames to use the required 5-frame storyline assets and captions that clearly represent long-distance → love → marriage → family with 5 children, while preserving the reduced-motion behavior (no auto-advance when reduced motion is enabled)."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-story-1.dim_900x900.png",
+          "operation": "create",
+          "description": "Add the generated static story frame at frontend/public/assets/generated/boy-story-1.dim_900x900.png for Page 10."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-story-2.dim_900x900.png",
+          "operation": "create",
+          "description": "Add the generated static story frame at frontend/public/assets/generated/boy-story-2.dim_900x900.png for Page 10."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-story-3.dim_900x900.png",
+          "operation": "create",
+          "description": "Add the generated static story frame at frontend/public/assets/generated/boy-story-3.dim_900x900.png for Page 10."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-story-4.dim_900x900.png",
+          "operation": "create",
+          "description": "Add the generated static story frame at frontend/public/assets/generated/boy-story-4.dim_900x900.png for Page 10."
+        },
+        {
+          "path": "frontend/public/assets/generated/boy-story-5.dim_900x900.png",
+          "operation": "create",
+          "description": "Add the generated static story frame at frontend/public/assets/generated/boy-story-5.dim_900x900.png for Page 10 (family with 5 children)."
+        }
+      ]
+    },
+    {
+      "id": "REQ-42",
+      "summary": "Add Page 11 closing screen with exact greeting text and an editable last note box.",
+      "acceptanceCriteria": [
+        "Page 11 shows the text exactly “Happy Valentine Day my love my future wifey”.",
+        "A visible editable note box is present and accepts typing.",
+        "Page 11 is reachable as the last page of the slideshow."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenClosingNote.tsx",
+          "operation": "create",
+          "description": "Create Page 11 closing screen with the exact text “Happy Valentine Day my love my future wifey” and an editable note textarea/input for the final note, and ensure it is wired as the last page in the slideshow."
+        },
+        {
+          "path": "frontend/src/components/ValentineSlideshow.tsx",
+          "operation": "modify",
+          "description": "Wire the new Page 11 closing screen into the slideshow render order as the final page after the Page 10 story screen."
+        }
+      ]
+    },
+    {
+      "id": "REQ-43",
+      "summary": "Update the pre-Page 1 intro animation to “Happy Valentine Day love with hearts” while preserving reduced-motion fallback.",
+      "acceptanceCriteria": [
+        "The pre-intro overlay visually emphasizes a Valentine theme with hearts and includes “Happy Valentine Day” as part of the animation’s displayed text or prominent visual treatment.",
+        "When prefers-reduced-motion is enabled, the pre-intro completes near-instantly (maintaining current minimal-motion behavior)."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/intro/PreIntroAnimation.tsx",
+          "operation": "modify",
+          "description": "Update the pre-intro overlay to prominently include “Happy Valentine Day” and a hearts-forward Valentine theme while keeping the existing prefers-reduced-motion near-instant completion behavior intact."
+        }
+      ]
+    },
+    {
+      "id": "REQ-44",
+      "summary": "Remove bunny/panda references and standardize visuals/alt text to a consistent cute boy-with-glasses theme across updated pages.",
+      "acceptanceCriteria": [
+        "No screen updated in this request shows “bunny”/“panda” in visible user-facing strings or primary character image alt text.",
+        "All character visuals used across Pages 3–7 and Page 9 are consistent with the boy-with-glasses theme."
+      ],
+      "file_operations": [
+        {
+          "path": "frontend/src/components/screens/ScreenValentineQuestion.tsx",
+          "operation": "modify",
+          "description": "Remove remaining bunny/panda user-facing strings and alt text from Page 3, and ensure the primary character visuals match the boy-with-glasses theme."
+        },
+        {
+          "path": "frontend/src/components/screens/ScreenHappyPanda.tsx",
+          "operation": "modify",
+          "description": "Remove remaining bunny/panda user-facing strings and alt text from Page 4, and ensure the primary character visuals match the boy-with-glasses theme."
+        },
+        {
+          "path": "frontend/src/components/screens/ScreenKissPanda.tsx",
+          "operation": "modify",
+          "description": "Remove remaining bunny/panda user-facing strings and alt text from Page 6, and ensure the primary character visuals match the boy-with-glasses theme."
+        },
+        {
+          "path": "frontend/src/components/screens/ScreenProposalPanda.tsx",
+          "operation": "modify",
+          "description": "Remove remaining bunny/panda user-facing strings and alt text from Page 7, and ensure the primary character visuals match the boy-with-glasses theme."
+        },
+        {
+          "path": "frontend/src/components/screens/ScreenFinalMessage.tsx",
+          "operation": "modify",
+          "description": "Ensure Page 9 (custom message) includes only boy-with-glasses visuals and removes any bunny/panda references from user-facing copy and alt text."
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,500 @@
+{
+  "schemaVersion": "1.0.0",
+  "projectStateVersion": 11,
+  "summary": "Romantic interactive Valentine’s Day love-story slideshow website with soft pastel design, smooth transitions, floating hearts/sparkles, star+moon animations, and gentle background music—now specified as an 11-page flow with a “cute boy with glasses” theme, a heart-filled intro animation, and added closing pages (long-distance→family story + final Valentine greeting with last note box).",
+  "architectural_notes": [
+    "Implement the experience as a slideshow-style multi-section single-page app or routed multi-page flow with consistent animated transitions.",
+    "Provide user-editable placeholders for photos and the final custom message content.",
+    "Ensure mobile-first responsive design and touch-friendly button sizes.",
+    "Background audio should include user controls and graceful handling of autoplay restrictions.",
+    "Love Letters should support 6 cards, each with an editable note field in addition to the photo placeholder and caption.",
+    "Implement Page 1 branching state to track repeated NO clicks (first triggers gag + reset; subsequent fades/disables NO).",
+    "Final page includes an additional animated story sequence (long-distance to marriage) as part of the slideshow ending.",
+    "Update the slideshow flow to 9 pages by splitting the initial welcome/message/question into separate pages and inserting a new moonrise envelope/letter reveal page after the proposal.",
+    "Add a short pre-Page-1 intro animation (lightweight, fast, and consistent with existing transition style).",
+    "Update the slideshow controller/content model to support an 11-page flow (including new Pages 10–11) and a consistent “cute boy with glasses” theme, while preserving smooth transitions and music autoplay-gating behavior."
+  ],
+  "known_issues": [],
+  "isFixRequest": false,
+  "imageRequirements": "## Required Images\n- Cartoon boy with glasses, angry expression (boy-glasses-angry.dim_800x800.png)\n- Cartoon boy with glasses, happy dancing pose (boy-glasses-happy-dance.dim_800x800.png)\n- Cartoon boy with glasses, blowing kisses pose (boy-glasses-kiss.dim_800x800.png)\n- Cartoon boy with glasses, kneeling with ring (boy-glasses-proposal.dim_800x800.png)\n- Cartoon boy with glasses, cute idle/celebration pose for custom message page (boy-glasses-final.dim_800x800.png)\n- Cartoon-style story frame: long-distance love (boy-story-1.dim_900x900.png)\n- Cartoon-style story frame: growing closer through calls/messages (boy-story-2.dim_900x900.png)\n- Cartoon-style story frame: together in person (boy-story-3.dim_900x900.png)\n- Cartoon-style story frame: marriage/wedding moment (boy-story-4.dim_900x900.png)\n- Cartoon-style story frame: family with 5 children (boy-story-5.dim_900x900.png)",
+  "existing_features": [
+    {
+      "id": "feature-create-a-mobile-friendly-single-page-slideshow-style-valentine-s-day-experience-with-6-sequential-screens-welcome-happy-panda-love-letters-gallery-kiss-panda-proposal-panda-final-custom-message-and-smooth-animated-transitions-between-screens",
+      "title": "Create a mobile-friendly, single-page slideshow-style Valentine’s Day experience with 6 sequential screens (Welcome, Happy Panda, Love Letters Gallery, Kiss Panda, Proposal Panda, Final Custom Message) and smooth animated transitions between screens.",
+      "reqIds": [
+        "REQ-1"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-apply-a-cohesive-visual-theme-across-the-entire-site-soft-pastel-palette-pink-white-lavender-cute-panda-romance-motifs-gentle-shadows-glow-and-consistent-typography-and-spacing-avoid-any-blue-purple-dominant-styling",
+      "title": "Apply a cohesive visual theme across the entire site: soft pastel palette (pink/white/lavender), cute panda/romance motifs, gentle shadows/glow, and consistent typography and spacing; avoid any blue/purple-dominant styling.",
+      "reqIds": [
+        "REQ-2"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-global-ambient-animations-floating-hearts-and-sparkles-overlay-in-the-background-across-all-screens-with-performance-safe-behavior-on-mobile-reasonable-particle-count-and-a-reduced-motion-fallback-that-respects-the-user-s-os-setting",
+      "title": "Implement global ambient animations: floating hearts and sparkles overlay in the background across all screens, with performance-safe behavior on mobile (reasonable particle count) and a reduced-motion fallback that respects the user’s OS setting.",
+      "reqIds": [
+        "REQ-3"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-gentle-romantic-background-music-that-loops-and-includes-an-always-visible-mute-unmute-control-music-should-begin-only-after-a-user-gesture-e-g-clicking-yes-continue-to-satisfy-browser-autoplay-policies",
+      "title": "Add gentle romantic background music that loops and includes an always-visible mute/unmute control; music should begin only after a user gesture (e.g., clicking YES/Continue) to satisfy browser autoplay policies.",
+      "reqIds": [
+        "REQ-4"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-1-welcome-display-large-text-hey-cutie-then-fade-in-the-message-you-make-my-world-brighter-every-day-and-i-want-to-ask-you-something-special-then-show-the-question-will-you-be-my-valentine-with-two-buttons-yes-and-no",
+      "title": "Screen 1 (Welcome): Display large text “Hey cutie ❤️”, then fade in the message “You make my world brighter every day… and I want to ask you something special.”, then show the question “Will you be my Valentine?” with two buttons: “YES 💖” and “NO 😠”.",
+      "reqIds": [
+        "REQ-5"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-1-no-path-when-no-is-clicked-show-an-angry-cartoon-panda-animation-and-the-text-wrong-answer-try-again-then-automatically-return-to-the-same-question-state-after-a-short-delay",
+      "title": "Screen 1 (NO path): When “NO 😠” is clicked, show an angry cartoon panda animation and the text “Wrong answer! Try again 😤🐼”, then automatically return to the same question state after a short delay.",
+      "reqIds": [
+        "REQ-6"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-1-yes-path-when-yes-is-clicked-play-a-heart-confetti-animation-and-transition-to-screen-2",
+      "title": "Screen 1 (YES path): When “YES 💖” is clicked, play a heart confetti animation and transition to Screen 2.",
+      "reqIds": [
+        "REQ-7"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-2-happy-panda-show-a-happy-dancing-panda-animation-with-the-text-you-just-made-me-the-happiest-person-alive-and-a-continue-button-with-sparkly-styling-animation-that-moves-to-screen-3",
+      "title": "Screen 2 (Happy Panda): Show a happy dancing panda animation with the text “You just made me the happiest person alive! 🐼💞” and a “Continue” button with sparkly styling/animation that moves to Screen 3.",
+      "reqIds": [
+        "REQ-8"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-3-love-letters-gallery-display-4-large-love-letters-side-by-side-envelope-card-style-each-letter-opens-when-clicked-with-a-cute-opening-animation-and-floating-hearts-inside-each-opened-letter-show-a-photo-placeholder-frame-no-upload-required-and-the-captions-in-this-order-my-favorite-smile-my-happy-place-my-forever-girl-my-heart-include-a-continue-button-to-proceed-to-screen-4",
+      "title": "Screen 3 (Love Letters Gallery): Display 4 large love letters side-by-side (envelope/card style). Each letter opens when clicked with a cute opening animation and floating hearts. Inside each opened letter, show a photo placeholder frame (no upload required) and the captions in this order: “My favorite smile”, “My happy place”, “My forever girl”, “My heart”. Include a “Continue ❤️” button to proceed to Screen 4.",
+      "reqIds": [
+        "REQ-9"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-4-kiss-panda-show-a-cute-panda-blowing-kisses-animation-fade-in-the-text-if-i-could-i-d-kiss-you-a-thousand-times-right-now-and-render-soft-heart-particles-in-the-background-include-a-continue-button-to-proceed-to-screen-5",
+      "title": "Screen 4 (Kiss Panda): Show a cute panda blowing kisses animation. Fade in the text “If I could, I’d kiss you a thousand times right now 💋🐼” and render soft heart particles in the background. Include a Continue button to proceed to Screen 5.",
+      "reqIds": [
+        "REQ-10"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-screen-5-proposal-panda-show-a-panda-kneeling-with-a-ring-animation-and-the-big-text-will-you-marry-me-someday-provide-exactly-two-positive-buttons-of-course-and-always-no-negative-option-either-selection-advances-to-the-final-screen-with-a-romantic-transition",
+      "title": "Screen 5 (Proposal Panda): Show a panda kneeling with a ring animation and the big text “Will you marry me someday? 💍”. Provide exactly two positive buttons: “Of course ❤️” and “Always ❤️” (no negative option). Either selection advances to the Final screen with a romantic transition.",
+      "reqIds": [
+        "REQ-11"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-final-screen-custom-message-provide-a-beautiful-final-page-with-floating-hearts-a-glowing-text-box-labeled-my-message-to-you-where-the-user-can-type-a-custom-message-and-an-ending-line-that-reads-forever-yours",
+      "title": "Final Screen (Custom Message): Provide a beautiful final page with floating hearts, a glowing text box labeled “My message to you…” where the user can type a custom message, and an ending line that reads “Forever yours.”",
+      "reqIds": [
+        "REQ-12"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-basic-accessibility-and-usability-polish-readable-contrast-for-pastel-ui-keyboard-focus-states-for-buttons-cards-and-tap-targets-sized-appropriately-for-mobile",
+      "title": "Add basic accessibility and usability polish: readable contrast for pastel UI, keyboard focus states for buttons/cards, and tap targets sized appropriately for mobile.",
+      "reqIds": [
+        "REQ-13"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-standardize-the-entire-valentine-slideshow-experience-to-a-consistent-cute-bunny-theme-visual-assets-and-user-facing-copy-removing-mixed-panda-bunny-references-across-all-screens-while-keeping-the-existing-6-screen-slideshow-flow-pastel-palette-ambient-hearts-sparkles-transitions-and-background-music-behavior-intact",
+      "title": "Standardize the entire Valentine slideshow experience to a consistent cute bunny theme (visual assets and user-facing copy), removing mixed panda/bunny references across all screens while keeping the existing 6-screen slideshow flow, pastel palette, ambient hearts/sparkles, transitions, and background music behavior intact.",
+      "reqIds": [
+        "REQ-14"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-screen-1-welcome-no-path-behavior-on-the-first-no-click-show-an-angry-cartoon-bunny-animation-and-the-text-wrong-answer-try-again-then-automatically-return-to-the-question-state-on-a-second-attempt-to-click-no-make-the-no-option-fade-out-and-become-disabled-unselectable",
+      "title": "Update Screen 1 (Welcome) NO-path behavior: on the first NO click, show an angry cartoon bunny animation and the text “Wrong answer! Try again 😤🐼”, then automatically return to the question state; on a second attempt to click NO, make the NO option fade out and become disabled/unselectable.",
+      "reqIds": [
+        "REQ-15"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-expand-screen-3-love-letters-gallery-from-4-to-6-love-letter-cards-keeping-the-same-envelope-card-style-and-open-on-click-animation-with-floating-hearts-and-use-the-following-captions-in-this-exact-order-my-favorite-smile-my-happy-peace-my-forever-girl-my-heart-my-life-my-future-wifey",
+      "title": "Expand Screen 3 (Love Letters Gallery) from 4 to 6 love letter cards, keeping the same envelope/card style and open-on-click animation with floating hearts, and use the following captions in this exact order: “My favorite smile”, “My happy peace”, “My forever girl”, “My heart”, “My life”, “My future wifey”.",
+      "reqIds": [
+        "REQ-16"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-inside-each-opened-love-letter-on-screen-3-include-1-a-photo-placeholder-area-where-the-user-can-paste-a-photo-and-2-an-editable-notes-box-where-the-user-can-type-a-personal-note-for-that-letter",
+      "title": "Inside each opened love letter on Screen 3, include (1) a photo placeholder area where the user can paste a photo and (2) an editable notes box where the user can type a personal note for that letter.",
+      "reqIds": [
+        "REQ-17"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-screens-2-4-and-5-to-bunny-themed-visuals-and-requested-copy-updates-screen-2-text-must-read-you-just-made-me-the-happiest-person-alive-bunny-screen-4-text-must-read-if-i-could-i-d-kiss-you-a-thousand-times-right-now-bunny-screen-5-remains-will-you-marry-me-someday-with-two-affirmative-buttons-only-and-includes-a-cute-happy-bunny-animation-accent-on-selection-before-advancing",
+      "title": "Update Screens 2, 4, and 5 to bunny-themed visuals and requested copy updates: Screen 2 text must read “You just made me the happiest person alive! Bunny 💞”; Screen 4 text must read “If I could, I’d kiss you a thousand times right now 💋 Bunny”; Screen 5 remains “Will you marry me someday? 💍” with two affirmative buttons only, and includes a cute happy-bunny animation accent on selection before advancing.",
+      "reqIds": [
+        "REQ-18"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-enhance-the-final-page-by-adding-an-embedded-cartoon-style-animated-story-sequence-depicting-a-long-distance-relationship-evolving-into-love-and-marriage-a-short-multi-step-animation-displayed-alongside-the-existing-my-message-to-you-editable-text-box-and-the-forever-yours-ending-line",
+      "title": "Enhance the Final Page by adding an embedded, cartoon-style animated story sequence depicting a long-distance relationship evolving into love and marriage (a short multi-step animation), displayed alongside the existing “My message to you…” editable text box and the “Forever yours.” ending line.",
+      "reqIds": [
+        "REQ-19"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-the-newly-generated-bunny-and-expanded-love-letter-story-images-as-static-assets-under-frontend-public-assets-generated-and-update-the-frontend-to-reference-these-new-filenames",
+      "title": "Add the newly generated bunny and expanded love-letter/story images as static assets under frontend/public/assets/generated and update the frontend to reference these new filenames.",
+      "reqIds": [
+        "REQ-20"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-restructure-the-valentine-slideshow-from-the-current-6-screen-flow-into-a-9-page-flow-1-hey-cutie-continue-2-fading-romantic-message-you-make-my-world-brighter-every-day-and-i-want-to-ask-you-something-special-continue-3-valentine-question-will-you-be-my-valentine-with-yes-no-behavior-first-no-shows-angry-bunny-gag-then-returns-second-no-disables-fades-no-4-happy-bunny-continue-5-love-letters-6-cards-continue-6-kiss-bunny-continue-7-proposal-bunny-with-two-positive-buttons-8-moonrise-envelope-letter-reveal-with-editable-content-continue-9-final-custom-message-page-with-the-long-distance-to-family-animated-story",
+      "title": "Restructure the Valentine slideshow from the current 6-screen flow into a 9-page flow: (1) “Hey cutie ❤️” + Continue, (2) fading romantic message “You make my world brighter every day… and I want to ask you something special.” + Continue, (3) Valentine question “Will you be my Valentine?” with YES/NO behavior (first NO shows angry bunny gag then returns; second NO disables/fades NO), (4) Happy bunny + Continue, (5) Love Letters (6 cards) + Continue, (6) Kiss bunny + Continue, (7) Proposal bunny with two positive buttons, (8) Moonrise envelope/letter reveal with editable content + Continue, (9) Final custom message page with the long-distance-to-family animated story.",
+      "reqIds": [
+        "REQ-21"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-page-1-as-a-dedicated-intro-screen-that-shows-only-the-large-text-hey-cutie-and-a-continue-button",
+      "title": "Implement Page 1 as a dedicated intro screen that shows only the large text “Hey cutie ❤️” and a Continue button.",
+      "reqIds": [
+        "REQ-22"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-page-2-as-a-dedicated-intro-screen-where-the-message-you-make-my-world-brighter-every-day-and-i-want-to-ask-you-something-special-fades-in-and-a-continue-button-advances-to-page-3",
+      "title": "Implement Page 2 as a dedicated intro screen where the message “You make my world brighter every day… and I want to ask you something special.” fades in, and a Continue button advances to Page 3.",
+      "reqIds": [
+        "REQ-23"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-page-3-as-the-dedicated-valentine-question-screen-with-the-exact-question-will-you-be-my-valentine-and-two-buttons-yes-and-no-keeping-the-existing-no-yes-behavior-first-no-shows-an-angry-cartoon-bunny-animation-and-the-text-wrong-answer-try-again-then-returns-to-the-question-second-no-attempt-fades-out-and-becomes-disabled-unselectable-yes-triggers-heart-confetti-then-advances-to-page-4",
+      "title": "Implement Page 3 as the dedicated Valentine question screen with the exact question “Will you be my Valentine?” and two buttons “👉 YES 💖” and “👉 NO 😠”, keeping the existing NO/YES behavior: first NO shows an angry cartoon bunny animation and the text “Wrong answer! Try again 😤🐼” then returns to the question; second NO attempt fades out and becomes disabled/unselectable; YES triggers heart confetti then advances to Page 4.",
+      "reqIds": [
+        "REQ-24"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-page-8-screen-after-proposal-acceptance-show-an-envelope-letter-box-opening-sequence-with-a-moonrise-animation-then-reveal-a-letter-page-emerging-from-the-envelope-containing-an-editable-text-area-where-the-user-can-write-anything-and-a-continue-button-to-advance-to-the-final-page",
+      "title": "Add a new Page 8 screen after Proposal acceptance: show an envelope/letter-box opening sequence with a moonrise animation, then reveal a letter/page emerging from the envelope containing an editable text area where the user can write anything, and a Continue button to advance to the final page.",
+      "reqIds": [
+        "REQ-25"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-extend-the-final-animated-story-sequence-to-depict-long-distance-love-marriage-family-with-5-children-in-a-beautiful-cartoon-style-and-ensure-it-is-displayed-on-the-final-page-alongside-the-existing-my-message-to-you-editable-text-box-and-forever-yours-ending-line",
+      "title": "Extend the final animated story sequence to depict: long-distance → love → marriage → family with 5 children, in a beautiful cartoon style, and ensure it is displayed on the final page alongside the existing “My message to you…” editable text box and “Forever yours.” ending line.",
+      "reqIds": [
+        "REQ-26"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-user-facing-copy-and-screen-labels-are-consistent-with-the-cute-bunny-theme-across-all-pages-remove-remaining-mixed-panda-references-in-text-where-present-while-keeping-the-user-requested-exact-phrases-unchanged-where-explicitly-specified",
+      "title": "Ensure all user-facing copy and screen labels are consistent with the cute bunny theme across all pages (remove remaining mixed panda references in text where present), while keeping the user-requested exact phrases unchanged where explicitly specified.",
+      "reqIds": [
+        "REQ-27"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-slideshow-controller-so-it-supports-9-pages-including-the-new-page-8-and-the-split-intro-pages-while-preserving-the-existing-transition-timing-behavior-and-the-onuserinteraction-callback-behavior-used-for-music-autoplay-gating",
+      "title": "Update the slideshow controller so it supports 9 pages, including the new Page 8 and the split intro pages, while preserving the existing transition timing behavior and the onUserInteraction callback behavior used for music autoplay gating.",
+      "reqIds": [
+        "REQ-28"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-tiny-intro-animation-that-plays-automatically-before-page-1-the-hey-cutie-screen-to-make-the-opening-feel-sweeter-then-seamlessly-reveals-page-1-when-finished",
+      "title": "Add a tiny intro animation that plays automatically before Page 1 (the \"Hey cutie ❤️\" screen) to make the opening feel sweeter, then seamlessly reveals Page 1 when finished.",
+      "reqIds": [
+        "REQ-29"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-the-pre-page-1-intro-animation-respects-reduced-motion-preferences-by-using-an-instantaneous-or-minimal-motion-fallback-when-the-os-setting-prefers-reduced-motion-reduce-is-enabled",
+      "title": "Ensure the pre-Page 1 intro animation respects reduced-motion preferences by using an instantaneous or minimal-motion fallback when the OS setting \"prefers-reduced-motion: reduce\" is enabled.",
+      "reqIds": [
+        "REQ-30"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-slideshow-flow-from-the-current-9-screens-to-an-11-page-flow-with-the-following-order-and-navigation-pre-intro-animation-page-1-hey-jaan-continue-page-2-fading-romantic-message-continue-page-3-valentine-question-yes-no-behavior-page-4-happy-dancing-boy-continue-page-5-love-letters-x6-continue-page-6-kiss-boy-continue-page-7-proposal-boy-with-two-affirmative-buttons-page-8-moonrise-envelope-editable-letter-continue-page-9-custom-message-forever-yours-page-10-full-animated-story-long-distance-love-marriage-family-with-5-children-page-11-final-valentine-greeting-last-note-box",
+      "title": "Update the slideshow flow from the current 9 screens to an 11-page flow with the following order and navigation: (Pre-intro animation) → Page 1 (HEY JAAN ❤️ + Continue) → Page 2 (fading romantic message + Continue) → Page 3 (Valentine question YES/NO behavior) → Page 4 (happy dancing boy + Continue) → Page 5 (Love Letters x6 + Continue ❤️) → Page 6 (kiss boy + Continue) → Page 7 (proposal boy with two affirmative buttons) → Page 8 (moonrise envelope + editable letter + Continue ❤️) → Page 9 (custom message + Forever yours.) → Page 10 (full animated story long-distance→love→marriage→family with 5 children) → Page 11 (final Valentine greeting + last note box).",
+      "reqIds": [
+        "REQ-31"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-implement-the-new-page-1-welcome-screen-copy-exactly-as-hey-jaan-uppercase-as-shown-with-a-continue-button-replacing-the-existing-hey-cutie-copy",
+      "title": "Implement the new Page 1 welcome screen copy exactly as “HEY JAAN ❤️” (uppercase as shown) with a Continue button, replacing the existing “Hey cutie ❤️” copy.",
+      "reqIds": [
+        "REQ-32"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-page-3-valentine-question-to-the-cute-boy-with-glasses-theme-on-the-first-no-click-show-an-angry-cartoon-boy-with-glasses-animation-and-the-text-exactly-wrong-answer-try-again-then-automatically-return-to-the-question-state-on-the-second-no-attempt-fade-out-and-disable-the-no-option-on-yes-transition-to-page-4-with-a-celebratory-heart-stars-moon-confetti-style-effect",
+      "title": "Update Page 3 (Valentine question) to the “cute boy with glasses” theme: on the first NO click, show an angry cartoon boy with glasses animation and the text exactly “Wrong answer! Try again 😤”, then automatically return to the question state; on the second NO attempt, fade out and disable the NO option; on YES, transition to Page 4 with a celebratory heart + stars + moon confetti-style effect.",
+      "reqIds": [
+        "REQ-34"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-page-4-to-show-a-happy-dancing-cartoon-boy-with-glasses-not-bunny-panda-and-display-the-text-exactly-you-just-made-me-the-happiest-person-alive-including-the-double-space-before-the-emoji-as-provided-with-a-sparkly-continue-button",
+      "title": "Update Page 4 to show a happy dancing cartoon boy with glasses (not bunny/panda) and display the text exactly “You just made me the happiest person alive!  💞” (including the double space before the emoji as provided), with a sparkly Continue button.",
+      "reqIds": [
+        "REQ-35"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-page-6-kiss-to-the-cute-boy-with-glasses-theme-show-a-boy-with-glasses-blowing-kisses-animation-fade-in-the-text-exactly-if-i-could-i-d-kiss-you-a-thousand-times-right-now-including-the-trailing-space-shown-with-soft-heart-particles-floating-in-the-background-and-a-continue-button",
+      "title": "Update Page 6 (Kiss) to the “cute boy with glasses” theme: show a boy with glasses blowing kisses animation; fade in the text exactly “If I could, I’d kiss you a thousand times right now 💋 ” (including the trailing space shown), with soft heart particles floating in the background, and a Continue button.",
+      "reqIds": [
+        "REQ-37"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-page-7-proposal-to-the-cute-boy-with-glasses-theme-show-a-boy-with-glasses-kneeling-with-a-ring-animation-update-the-proposal-question-text-exactly-to-will-you-marry-me-in-future-provide-exactly-two-affirmative-buttons-of-course-and-always-selecting-either-shows-a-cute-happy-boy-with-glasses-celebration-accent-then-advances-to-page-8",
+      "title": "Update Page 7 (Proposal) to the “cute boy with glasses” theme: show a boy with glasses kneeling with a ring animation; update the proposal question text exactly to “Will you marry me in future? 💍”; provide exactly two affirmative buttons: “👉 Of course ❤️” and “👉 Always ❤️”; selecting either shows a cute happy boy-with-glasses celebration accent then advances to Page 8.",
+      "reqIds": [
+        "REQ-38"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-refactor-the-current-final-page-so-page-9-is-a-dedicated-custom-message-page-with-a-cute-boy-with-glasses-animation-on-the-page-containing-a-glowing-text-box-labeled-exactly-my-message-to-you-floating-hearts-and-the-romantic-ending-line-exactly-forever-yours-without-extra-emoji",
+      "title": "Refactor the current final page so Page 9 is a dedicated “Custom Message” page (with a cute boy-with-glasses animation on the page), containing a glowing text box labeled exactly “My message to you…”, floating hearts, and the romantic ending line exactly “Forever yours.” (without extra emoji).",
+      "reqIds": [
+        "REQ-40"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-page-10-that-presents-a-full-animated-story-sequence-in-a-beautiful-cartoon-style-that-depicts-long-distance-love-marriage-family-with-5-children-the-story-must-be-viewable-on-mobile-and-must-respect-reduced-motion-preferences-no-auto-advance-when-reduced-motion-is-enabled",
+      "title": "Add a new Page 10 that presents a full animated story sequence in a beautiful cartoon style that depicts: long-distance → love → marriage → family with 5 children. The story must be viewable on mobile and must respect reduced-motion preferences (no auto-advance when reduced motion is enabled).",
+      "reqIds": [
+        "REQ-41"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-add-a-new-page-11-closing-screen-that-displays-the-text-exactly-happy-valentine-day-my-love-my-future-wifey-and-includes-an-editable-note-box-where-the-user-can-write-a-final-note",
+      "title": "Add a new Page 11 closing screen that displays the text exactly “Happy Valentine Day my love my future wifey” and includes an editable note box where the user can write a final note.",
+      "reqIds": [
+        "REQ-42"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-update-the-pre-page-1-intro-animation-to-match-the-requested-theme-happy-valentine-day-love-with-hearts-while-keeping-the-existing-reduced-motion-fallback-behavior-intact",
+      "title": "Update the pre-Page 1 intro animation to match the requested theme “Happy Valentine Day love with hearts” while keeping the existing reduced-motion fallback behavior intact.",
+      "reqIds": [
+        "REQ-43"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-remove-remaining-bunny-panda-references-from-user-facing-copy-and-alt-text-across-all-pages-being-updated-and-standardize-the-experience-to-a-consistent-cute-boy-with-glasses-theme-throughout",
+      "title": "Remove remaining bunny/panda references from user-facing copy and alt text across all pages being updated, and standardize the experience to a consistent “cute boy with glasses” theme throughout.",
+      "reqIds": [
+        "REQ-44"
+      ],
+      "version": 1
+    }
+  ],
+  "new_feature_requests": [
+    {
+      "id": "AR-1",
+      "summary": "Create Page 1 (Welcome) with romantic intro text, Valentine question, YES/NO buttons; NO triggers angry panda gag then returns; YES triggers heart confetti transition to next page",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-2",
+      "summary": "Create Page 2 (Happy Panda) with dancing panda animation, celebratory text, and sparkly Continue button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-3",
+      "summary": "Create Page 3 (Love Letters Gallery) with 4 clickable animated letters/cards each containing a photo placeholder and caption; floating hearts; Continue button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-4",
+      "summary": "Create Page 4 (Kiss Panda) with panda blowing kisses animation, fading text, and heart particle background; Continue button",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-5",
+      "summary": "Create Page 5 (Proposal Panda) with kneeling panda + ring animation and two positive-choice buttons (no negative option)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-6",
+      "summary": "Create Final Page with editable/glowing custom message text box, floating hearts, and closing line “Forever yours.”",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-7",
+      "summary": "Apply global styling/UX: pastel pink/white/lavender theme, cute playful emotional tone, smooth page transitions, floating hearts & sparkles, mobile-friendly layout",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-8",
+      "summary": "Add gentle romantic background music (autoplay/loop behavior as appropriate)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-9",
+      "summary": "Update Love Letters Gallery to include 6 clickable animated letters (not 4), each with a photo placeholder, the 6 specified captions, and an additional editable notes box per letter",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-10",
+      "summary": "Enhance Page 1 NO-path behavior: first NO shows angry bunny gag then returns; on a second attempt to click NO, the NO option fades/gets disabled",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-11",
+      "summary": "Add a full animated story sequence on the Final Page depicting a long-distance relationship evolving into love and marriage in a beautiful cartoon style",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-12",
+      "summary": "Shift core character theme/assets to “cute bunny theme throughout” (angry bunny, happy dancing bunny, kissing bunny, proposal bunny), while resolving/standardizing mixed bunny/panda copy",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-13",
+      "summary": "Split intro into 3 pages: Page 1 “Hey cutie ❤️” with Continue; Page 2 fading romantic message with Continue; Page 3 Valentine question with YES/NO behavior (NO gag then disable on second attempt; YES heart confetti transition)",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-14",
+      "summary": "Add new Page 8: after proposal acceptance, show an envelope/letter-box opening with moonrise animation; a page emerges from the envelope with editable text/content",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-15",
+      "summary": "Extend the final animated story sequence to depict long-distance → love → marriage → family with 5 children in a beautiful cartoon style",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-16",
+      "summary": "Add a tiny intro animation that plays before Page 1 to enhance the opening moment",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-17",
+      "summary": "Shift the core character theme/assets and animations to a consistent “cute boy with glasses” theme (welcome/angry gag/happy dance/kiss/proposal/final), replacing the prior bunny/panda theme and updating user-facing copy accordingly (e.g., “HEY JAAN ❤️”).",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-18",
+      "summary": "Restructure the slideshow flow to 11 pages: intro heart animation; Page 1 “HEY JAAN ❤️” + Continue; Page 2 fading romantic message + Continue; Page 3 Valentine question YES/NO with first NO angry boy-with-glasses gag + return and second NO fades/disables; YES triggers heart+stars+moon confetti; Page 4 happy dancing boy + Continue; Page 5 Love Letters (6) with photo paste + caption + editable notes + Continue; Page 6 kiss boy + Continue; Page 7 proposal boy with two positive buttons + happy animation; Page 8 moonrise letter-box reveal + editable letter + Continue; Page 9 custom message + “Forever yours.”; Page 10 full animated story long-distance→love→marriage→family with 5 children; Page 11 “Happy Valentine Day my love my future wifey” + final note box.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-19",
+      "summary": "Add/define the opening intro animation as “Happy Valentine day love” with hearts (and matching romantic pastel style) before Page 1 begins.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-20",
+      "summary": "Add a new final Page 11 with the text “happy valentine day my love my future wifey” and an additional last note box where the user can write a final note.",
+      "reqIds": [],
+      "status": "pending"
+    },
+    {
+      "id": "AR-23",
+      "summary": "Keep Page 2 as a dedicated intro message page where the message “You make my world brighter every day… and I want to ask you something special.” fades in, with a Continue button to proceed.",
+      "reqIds": [
+        "REQ-33"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-26",
+      "summary": "Keep Page 5 (Love Letters Gallery) as 6 clickable envelope/letter cards; each opened letter must include: (1) a pasteable photo placeholder, (2) the caption under the photo in this exact order: “My favorite smile”, “My happy peace”, “My forever girl”, “My heart”, “My life”, “My future wifey”, and (3) an editable notes box for writing a personal note; include a “Continue ❤️” button.",
+      "reqIds": [
+        "REQ-36"
+      ],
+      "status": "pending"
+    },
+    {
+      "id": "AR-29",
+      "summary": "Keep Page 8 as the moonrise envelope/letter reveal sequence and ensure it remains editable (user can type anything), then provide a Continue button to advance.",
+      "reqIds": [
+        "REQ-39"
+      ],
+      "status": "pending"
+    }
+  ],
+  "gameProjectType": "none",
+  "projectName": "Romantic interactive Valentine’s Day bunny-themed slideshow website",
+  "clarification_mode": "instant",
+  "clarification_rounds": 0
+}

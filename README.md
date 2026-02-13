@@ -1,2 +1,3 @@
-# romantic-interactive-valentine-s-day-bunny-themed-slideshow-website
-Exported from Caffeine project: Romantic interactive Valentine’s Day bunny-themed slideshow website
+## 
+
+To run app build and run docker image: `docker build -t app . docker run -it --network host app`
