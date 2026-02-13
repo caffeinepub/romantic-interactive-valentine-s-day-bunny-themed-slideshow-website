@@ -39,7 +39,7 @@ export function PreIntroAnimation({ onComplete }: PreIntroAnimationProps) {
 
   if (prefersReducedMotion) {
     return (
-      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-romantic-pink-light via-romantic-white to-romantic-lavender opacity-0">
+      <div className="fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-romantic-pink-light via-romantic-white to-romantic-lavender opacity-0 pointer-events-none">
         <Heart className="w-16 h-16 text-romantic-primary" />
       </div>
     );
@@ -47,7 +47,7 @@ export function PreIntroAnimation({ onComplete }: PreIntroAnimationProps) {
 
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-romantic-pink-light via-romantic-white to-romantic-lavender transition-opacity duration-700 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-gradient-to-br from-romantic-pink-light via-romantic-white to-romantic-lavender transition-opacity duration-700 pointer-events-none ${
         stage === 'fade-in' ? 'opacity-0' : stage === 'hold' ? 'opacity-100' : 'opacity-0'
       }`}
     >

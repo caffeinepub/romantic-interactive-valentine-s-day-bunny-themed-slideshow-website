@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Upload } from 'lucide-react';
 
 interface LoveLetterCardProps {
   image: string;
@@ -24,6 +25,7 @@ export function LoveLetterCard({
   delay = 0 
 }: LoveLetterCardProps) {
   const photoAreaRef = useRef<HTMLDivElement>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const handlePaste = (e: React.ClipboardEvent) => {
     const items = e.clipboardData?.items;
@@ -43,6 +45,32 @@ export function LoveLetterCard({
         }
         break;
       }
+    }
+  };
+
+  const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file && file.type.startsWith('image/')) {
+      const reader = new FileReader();
+      reader.onload = (event) => {
+        if (event.target?.result) {
+          onPhotoChange(event.target.result as string);
+        }
+      };
+      reader.readAsDataURL(file);
+    }
+  };
+
+  const handlePhotoAreaClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
+    }
+  };
+
+  const handlePhotoAreaKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      handlePhotoAreaClick();
     }
   };
 
@@ -83,18 +111,33 @@ export function LoveLetterCard({
               {caption}
             </h3>
             
+            <input
+              ref={fileInputRef}
+              type="file"
+              accept="image/*"
+              onChange={handleFileSelect}
+              className="hidden"
+              aria-label="Choose photo"
+            />
+            
             <div
               ref={photoAreaRef}
               onPaste={handlePaste}
+              onClick={handlePhotoAreaClick}
+              onKeyDown={handlePhotoAreaKeyDown}
               tabIndex={0}
+              role="button"
+              aria-label="Photo frame - click to choose or paste an image"
               className="w-full h-64 bg-romantic-pink-light/20 rounded-xl mb-4 flex items-center justify-center border-4 border-dashed border-romantic-primary/30 overflow-hidden cursor-pointer hover:border-romantic-primary/50 transition-colors focus:outline-none focus:ring-4 focus:ring-romantic-primary/50"
             >
               {photo ? (
-                <img src={photo} alt="Pasted" className="w-full h-full object-cover" />
+                <img src={photo} alt="Your photo" className="w-full h-full object-cover" />
               ) : (
                 <div className="text-center p-4">
-                  <p className="text-romantic-dark/60 text-sm mb-2">📷 Photo Frame</p>
-                  <p className="text-romantic-dark/40 text-xs">Click here and paste (Ctrl+V) an image</p>
+                  <Upload className="w-12 h-12 text-romantic-primary/60 mx-auto mb-2" />
+                  <p className="text-romantic-dark/60 text-sm mb-2 font-semibold">📷 Photo Frame</p>
+                  <p className="text-romantic-dark/50 text-xs mb-1">Click to choose a photo</p>
+                  <p className="text-romantic-dark/40 text-xs">or paste (Ctrl+V / Cmd+V)</p>
                 </div>
               )}
             </div>

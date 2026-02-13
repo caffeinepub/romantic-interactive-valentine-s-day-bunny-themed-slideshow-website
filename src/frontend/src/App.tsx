@@ -22,8 +22,10 @@ function App() {
     <div className="relative min-h-screen overflow-hidden">
       {showPreIntro && <PreIntroAnimation onComplete={handlePreIntroComplete} />}
       <AmbientOverlay />
-      <MusicController hasInteracted={hasInteracted} />
-      <ValentineSlideshow onUserInteraction={handleUserInteraction} />
+      <div className="relative z-10">
+        <MusicController hasInteracted={hasInteracted} />
+        <ValentineSlideshow onUserInteraction={handleUserInteraction} />
+      </div>
     </div>
   );
 }

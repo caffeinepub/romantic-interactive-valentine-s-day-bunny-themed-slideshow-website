@@ -1,293 +1,63 @@
 {
   "kind": "build_request",
-  "title": "Switch Valentine slideshow to a “cute boy with glasses” 11-page love story with updated intro, screens, story page, and final greeting",
-  "priority": "normal",
+  "title": "Fix editability so users can paste photos and write letters/notes",
+  "priority": "high",
   "requirements": [
     {
-      "id": "REQ-31",
-      "text": "Update the slideshow flow from the current 9 screens to an 11-page flow with the following order and navigation: (Pre-intro animation) → Page 1 (HEY JAAN ❤️ + Continue) → Page 2 (fading romantic message + Continue) → Page 3 (Valentine question YES/NO behavior) → Page 4 (happy dancing boy + Continue) → Page 5 (Love Letters x6 + Continue ❤️) → Page 6 (kiss boy + Continue) → Page 7 (proposal boy with two affirmative buttons) → Page 8 (moonrise envelope + editable letter + Continue ❤️) → Page 9 (custom message + Forever yours.) → Page 10 (full animated story long-distance→love→marriage→family with 5 children) → Page 11 (final Valentine greeting + last note box).",
+      "id": "REQ-45",
+      "text": "Ensure all editable inputs on the slideshow are actually interactive (click/tap focuses, typing works) by preventing any global overlays/animations from intercepting pointer or touch events over form elements (Love Letters photo area + notes textarea, Page 8 letter textarea, Page 9 message textarea, Page 11 final note textarea).",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "Restructure the slideshow flow to 11 pages: intro heart animation; Page 1 “HEY JAAN ❤️” + Continue; Page 2 fading romantic message + Continue; Page 3 Valentine question YES/NO ... Page 10  -  a full animation story ... Page 11 - happy valentine day my love my future wifey and also add a note box where I can write a last note"
+          "Make this editable so i can paste pics and write letter"
         ]
       },
       "acceptanceCriteria": [
-        "The slideshow controller advances through exactly 11 pages (not counting the pre-intro overlay), and does not stop at 9.",
-        "All existing per-page transition timing behavior remains smooth and consistent with current transitions.",
-        "The slideshow still calls the provided onUserInteraction callback on any user-driven advance or answer so music autoplay gating continues to work."
+        "On mobile and desktop, the user can tap/click into each textarea (Page 8, Page 9, Page 11, and Love Letter notes) and type text without the click being swallowed by ambient/animation layers.",
+        "The Love Letter photo frame area can be focused/tapped and is not blocked by any overlay; the caret/focus ring appears when focused.",
+        "Ambient/background visual layers (e.g., floating hearts/sparkles) do not prevent interaction with any buttons or form fields."
       ]
     },
     {
-      "id": "REQ-32",
-      "text": "Implement the new Page 1 welcome screen copy exactly as “HEY JAAN ❤️” (uppercase as shown) with a Continue button, replacing the existing “Hey cutie ❤️” copy.",
+      "id": "REQ-46",
+      "text": "Make the Love Letters (Page 5) photo slot reliably accept pasted images and provide a fallback for devices/browsers that do not support clipboard image paste (e.g., mobile) by adding an explicit user-initiated image picker option inside each opened LoveLetterCard.",
       "target": "frontend",
       "source": {
         "messageIds": [
-          "msg-4"
+          "msg-1"
         ],
         "quotes": [
-          "Page 1 – Welcome The first screen should display large cute text:\n“HEY JAAN ❤️”  add continue button"
+          "Make this editable so i can paste pics and write letter"
         ]
       },
       "acceptanceCriteria": [
-        "Page 1 displays the text exactly “HEY JAAN ❤️”.",
-        "A visible Continue button advances to Page 2."
-      ]
-    },
-    {
-      "id": "REQ-33",
-      "text": "Keep Page 2 as a dedicated intro message page where the message “You make my world brighter every day… and I want to ask you something special.” fades in, with a Continue button to proceed.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 2 - ... a short romantic message fades in: “You make my world brighter every day… and I want to ask you something special.” then add continue button"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The Page 2 message fades in after page load (or after a short delay) and matches the text exactly.",
-        "Continue advances to Page 3."
-      ]
-    },
-    {
-      "id": "REQ-34",
-      "text": "Update Page 3 (Valentine question) to the “cute boy with glasses” theme: on the first NO click, show an angry cartoon boy with glasses animation and the text exactly “Wrong answer! Try again 😤”, then automatically return to the question state; on the second NO attempt, fade out and disable the NO option; on YES, transition to Page 4 with a celebratory heart + stars + moon confetti-style effect.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "If she clicks NO:for first time Show an angry cartoon boy with glasses animation with funny dramatic text: “Wrong answer! Try again 😤” Then automatically return to the same question screen. If she again try toh click no the no option will fade If she clicks YES: Transition to the next page with heart stars moon confetti animation."
-        ]
-      },
-      "acceptanceCriteria": [
-        "The question remains exactly “Will you be my Valentine?” with the two buttons “👉 YES 💖” and “👉 NO 😠”.",
-        "First NO shows the angry boy-with-glasses animation + the exact text “Wrong answer! Try again 😤”, then returns to the question automatically.",
-        "Second NO fades out and becomes unclickable/disabled.",
-        "YES triggers a celebratory overlay that includes hearts plus star and moon elements before advancing to Page 4."
-      ]
-    },
-    {
-      "id": "REQ-35",
-      "text": "Update Page 4 to show a happy dancing cartoon boy with glasses (not bunny/panda) and display the text exactly “You just made me the happiest person alive!  💞” (including the double space before the emoji as provided), with a sparkly Continue button.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 4– Happy cutiee boy with glasses Show a happy dancing animation with text: “You just made me the happiest person alive!  💞” Add a “Continue” button with sparkles."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Page 4 uses boy-with-glasses imagery and no bunny/panda references in visuals or alt text.",
-        "The displayed sentence matches exactly “You just made me the happiest person alive!  💞”.",
-        "Continue button is present and includes sparkly styling/animation."
-      ]
-    },
-    {
-      "id": "REQ-36",
-      "text": "Keep Page 5 (Love Letters Gallery) as 6 clickable envelope/letter cards; each opened letter must include: (1) a pasteable photo placeholder, (2) the caption under the photo in this exact order: “My favorite smile”, “My happy peace”, “My forever girl”, “My heart”, “My life”, “My future wifey”, and (3) an editable notes box for writing a personal note; include a “Continue ❤️” button.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 5 – Love Letters Gallery Display 6 large love letters side-by-side... A placeholder frame where I can paste her photo ... captions ... And with photo also add a box for where a can write notes for her \nButton: Continue ❤️"
-        ]
-      },
-      "acceptanceCriteria": [
-        "There are exactly 6 letter cards, each opens on click with a cute opening animation and floating hearts.",
-        "Each opened letter contains a pasteable photo area and a notes input/textarea.",
-        "Captions match the specified text exactly and are shown in the specified order.",
-        "A “Continue ❤️” button advances to Page 6."
-      ]
-    },
-    {
-      "id": "REQ-37",
-      "text": "Update Page 6 (Kiss) to the “cute boy with glasses” theme: show a boy with glasses blowing kisses animation; fade in the text exactly “If I could, I’d kiss you a thousand times right now 💋 ” (including the trailing space shown), with soft heart particles floating in the background, and a Continue button.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 6 – Kiss Show a cute boy  with glasses blowing kisses animation. Text fades in: “If I could, I’d kiss you a thousand times right now 💋 ” Soft heart particles floating in background.\nContinue button."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Boy-with-glasses kiss imagery is used (no bunny/panda).",
-        "Text matches exactly “If I could, I’d kiss you a thousand times right now 💋 ”.",
-        "Soft heart particle background is visible (with reduced-motion fallback preserved).",
-        "Continue advances to Page 7."
-      ]
-    },
-    {
-      "id": "REQ-38",
-      "text": "Update Page 7 (Proposal) to the “cute boy with glasses” theme: show a boy with glasses kneeling with a ring animation; update the proposal question text exactly to “Will you marry me in future? 💍”; provide exactly two affirmative buttons: “👉 Of course ❤️” and “👉 Always ❤️”; selecting either shows a cute happy boy-with-glasses celebration accent then advances to Page 8.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 7 – Proposal A boy with glasses kneels with a ring animation. Big romantic text:\n“Will you marry me in future? 💍”\nButtons: 👉 Of course ❤️\n👉 Always ❤️\nNo negative option. Only love. With na cute animation on Happy boy with glasses"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The proposal text matches exactly “Will you marry me in future? 💍”.",
-        "Only two buttons are shown: “👉 Of course ❤️” and “👉 Always ❤️”; no negative option exists.",
-        "On selection, a celebration accent plays briefly, then navigation proceeds to Page 8."
-      ]
-    },
-    {
-      "id": "REQ-39",
-      "text": "Keep Page 8 as the moonrise envelope/letter reveal sequence and ensure it remains editable (user can type anything), then provide a Continue button to advance.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 8 - Then she selected yes a letter box open\nWith moon rise animation and and a page appear from insida the letter envelope where I can edit or write any thing"
-        ]
-      },
-      "acceptanceCriteria": [
-        "A moonrise scene appears, the envelope opens, and a letter emerges.",
-        "The letter contains an editable text area.",
-        "Continue advances to Page 9."
-      ]
-    },
-    {
-      "id": "REQ-40",
-      "text": "Refactor the current final page so Page 9 is a dedicated “Custom Message” page (with a cute boy-with-glasses animation on the page), containing a glowing text box labeled exactly “My message to you…”, floating hearts, and the romantic ending line exactly “Forever yours.” (without extra emoji).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 9 – cute boy animation on page with Custom Message A beautiful final page where I can type my own message. Create a glowing text box labeled:\n“My message to you…”\nAdd floating hearts and a romantic ending line:\n“Forever yours.”"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Page 9 shows a boy-with-glasses visual element/animation.",
-        "The heading/label is exactly “My message to you…”.",
-        "The ending line is exactly “Forever yours.” (no additional emoji).",
-        "The Love Story animation content is not shown on Page 9 (it is moved to Page 10)."
-      ]
-    },
-    {
-      "id": "REQ-41",
-      "text": "Add a new Page 10 that presents a full animated story sequence in a beautiful cartoon style that depicts: long-distance → love → marriage → family with 5 children. The story must be viewable on mobile and must respect reduced-motion preferences (no auto-advance when reduced motion is enabled).",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 10  -  a full animation story of long distance to love marriage to family of 5 childs with beautiful cartoon way."
-        ]
-      },
-      "acceptanceCriteria": [
-        "Page 10 exists as its own page in the slideshow after Page 9.",
-        "The story sequence clearly includes a family outcome that corresponds to 5 children.",
-        "When prefers-reduced-motion is enabled, the story does not auto-advance (manual navigation is still possible)."
-      ]
-    },
-    {
-      "id": "REQ-42",
-      "text": "Add a new Page 11 closing screen that displays the text exactly “Happy Valentine Day my love my future wifey” and includes an editable note box where the user can write a final note.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Page 11 - happy valentine day my love my future wifey and also add a note box where I can write a last note"
-        ]
-      },
-      "acceptanceCriteria": [
-        "Page 11 shows the text exactly “Happy Valentine Day my love my future wifey”.",
-        "A visible editable note box is present and accepts typing.",
-        "Page 11 is reachable as the last page of the slideshow."
-      ]
-    },
-    {
-      "id": "REQ-43",
-      "text": "Update the pre-Page 1 intro animation to match the requested theme “Happy Valentine Day love with hearts” while keeping the existing reduced-motion fallback behavior intact.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "First intro animation of happy valentine day love with hearts"
-        ]
-      },
-      "acceptanceCriteria": [
-        "The pre-intro overlay visually emphasizes a Valentine theme with hearts and includes “Happy Valentine Day” as part of the animation’s displayed text or prominent visual treatment.",
-        "When prefers-reduced-motion is enabled, the pre-intro completes near-instantly (maintaining current minimal-motion behavior)."
-      ]
-    },
-    {
-      "id": "REQ-44",
-      "text": "Remove remaining bunny/panda references from user-facing copy and alt text across all pages being updated, and standardize the experience to a consistent “cute boy with glasses” theme throughout.",
-      "target": "frontend",
-      "source": {
-        "messageIds": [
-          "msg-4"
-        ],
-        "quotes": [
-          "Cute boy theme throughout"
-        ]
-      },
-      "acceptanceCriteria": [
-        "No screen updated in this request shows “bunny”/“panda” in visible user-facing strings or primary character image alt text.",
-        "All character visuals used across Pages 3–7 and Page 9 are consistent with the boy-with-glasses theme."
+        "Desktop: when the user focuses the photo frame and pastes an image (Ctrl+V / Cmd+V), the pasted image is displayed in the frame for that specific letter.",
+        "Mobile: when the user taps the photo frame, they have a clear way to choose an image (file picker) and the selected image is displayed in the frame for that specific letter.",
+        "The existing notes textarea per opened letter remains editable and updates live as the user types.",
+        "No backend upload is required; the selected/pasted image is handled client-side only."
       ]
     }
   ],
   "constraints": [
-    "Frontend immutable paths must not be edited: frontend/src/hooks/useInternetIdentity.ts, frontend/src/hooks/useInternetIdentity.tsx, frontend/src/hooks/useActor.ts, frontend/src/main.tsx, frontend/src/components/ui.",
-    "Keep the backend as a single Motoko actor in backend/main.mo; do not introduce additional backend services.",
-    "Do not route images through the backend; use static assets under frontend/public/assets/generated."
+    "Do not edit any files under frontend/src/components/ui (read-only).",
+    "Keep the backend as single-actor Motoko; do not introduce additional backend services (no backend changes required for this request).",
+    "Use English for any new or updated user-facing text."
   ],
   "nonGoals": [
-    "Adding persistence or saving the typed messages/notes to the backend.",
-    "Adding third-party authentication providers (Internet Identity integration is unchanged).",
-    "Adding real-time features (e.g., WebSockets/chat).",
-    "Changing the existing background music autoplay-gating behavior beyond ensuring it still works with the new pages."
+    "Adding multi-user sharing, syncing, or permanent on-chain storage of pasted photos/typed letters.",
+    "Adding third-party integrations for storage or authentication beyond existing Internet Identity usage."
   ],
   "imageRequirements": {
-    "required": [
-      "Cartoon boy with glasses, angry expression (boy-glasses-angry.dim_800x800.png)",
-      "Cartoon boy with glasses, happy dancing pose (boy-glasses-happy-dance.dim_800x800.png)",
-      "Cartoon boy with glasses, blowing kisses pose (boy-glasses-kiss.dim_800x800.png)",
-      "Cartoon boy with glasses, kneeling with ring (boy-glasses-proposal.dim_800x800.png)",
-      "Cartoon boy with glasses, cute idle/celebration pose for custom message page (boy-glasses-final.dim_800x800.png)",
-      "Cartoon-style story frame: long-distance love (boy-story-1.dim_900x900.png)",
-      "Cartoon-style story frame: growing closer through calls/messages (boy-story-2.dim_900x900.png)",
-      "Cartoon-style story frame: together in person (boy-story-3.dim_900x900.png)",
-      "Cartoon-style story frame: marriage/wedding moment (boy-story-4.dim_900x900.png)",
-      "Cartoon-style story frame: family with 5 children (boy-story-5.dim_900x900.png)"
-    ],
+    "required": [],
     "edits": []
   },
   "userProfileUpdate": {
     "goalsToAdd": [],
     "goalsToRemove": [],
-    "preferencesToAdd": [
-      "Prefer English-only user-facing copy in build requests and app UI strings."
-    ],
+    "preferencesToAdd": [],
     "preferencesToRemove": [],
     "miscToAdd": [],
     "miscToRemove": [],

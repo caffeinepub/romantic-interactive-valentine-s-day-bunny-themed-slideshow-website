@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "projectStateVersion": 11,
+  "projectStateVersion": 13,
   "summary": "Romantic interactive Valentine’s Day love-story slideshow website with soft pastel design, smooth transitions, floating hearts/sparkles, star+moon animations, and gentle background music—now specified as an 11-page flow with a “cute boy with glasses” theme, a heart-filled intro animation, and added closing pages (long-distance→family story + final Valentine greeting with last note box).",
   "architectural_notes": [
     "Implement the experience as a slideshow-style multi-section single-page app or routed multi-page flow with consistent animated transitions.",
@@ -14,9 +14,10 @@
     "Add a short pre-Page-1 intro animation (lightweight, fast, and consistent with existing transition style).",
     "Update the slideshow controller/content model to support an 11-page flow (including new Pages 10–11) and a consistent “cute boy with glasses” theme, while preserving smooth transitions and music autoplay-gating behavior."
   ],
-  "known_issues": [],
-  "isFixRequest": false,
-  "imageRequirements": "## Required Images\n- Cartoon boy with glasses, angry expression (boy-glasses-angry.dim_800x800.png)\n- Cartoon boy with glasses, happy dancing pose (boy-glasses-happy-dance.dim_800x800.png)\n- Cartoon boy with glasses, blowing kisses pose (boy-glasses-kiss.dim_800x800.png)\n- Cartoon boy with glasses, kneeling with ring (boy-glasses-proposal.dim_800x800.png)\n- Cartoon boy with glasses, cute idle/celebration pose for custom message page (boy-glasses-final.dim_800x800.png)\n- Cartoon-style story frame: long-distance love (boy-story-1.dim_900x900.png)\n- Cartoon-style story frame: growing closer through calls/messages (boy-story-2.dim_900x900.png)\n- Cartoon-style story frame: together in person (boy-story-3.dim_900x900.png)\n- Cartoon-style story frame: marriage/wedding moment (boy-story-4.dim_900x900.png)\n- Cartoon-style story frame: family with 5 children (boy-story-5.dim_900x900.png)",
+  "known_issues": [
+    "Deployed version is not currently editable as requested: user cannot paste photos and/or write letter notes; ensure Love Letters and editable text areas support pasting images and typing notes."
+  ],
+  "isFixRequest": true,
   "existing_features": [
     {
       "id": "feature-create-a-mobile-friendly-single-page-slideshow-style-valentine-s-day-experience-with-6-sequential-screens-welcome-happy-panda-love-letters-gallery-kiss-panda-proposal-panda-final-custom-message-and-smooth-animated-transitions-between-screens",
@@ -343,6 +344,22 @@
       "title": "Remove remaining bunny/panda references from user-facing copy and alt text across all pages being updated, and standardize the experience to a consistent “cute boy with glasses” theme throughout.",
       "reqIds": [
         "REQ-44"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-ensure-all-editable-inputs-on-the-slideshow-are-actually-interactive-click-tap-focuses-typing-works-by-preventing-any-global-overlays-animations-from-intercepting-pointer-or-touch-events-over-form-elements-love-letters-photo-area-notes-textarea-page-8-letter-textarea-page-9-message-textarea-page-11-final-note-textarea",
+      "title": "Ensure all editable inputs on the slideshow are actually interactive (click/tap focuses, typing works) by preventing any global overlays/animations from intercepting pointer or touch events over form elements (Love Letters photo area + notes textarea, Page 8 letter textarea, Page 9 message textarea, Page 11 final note textarea).",
+      "reqIds": [
+        "REQ-45"
+      ],
+      "version": 1
+    },
+    {
+      "id": "feature-make-the-love-letters-page-5-photo-slot-reliably-accept-pasted-images-and-provide-a-fallback-for-devices-browsers-that-do-not-support-clipboard-image-paste-e-g-mobile-by-adding-an-explicit-user-initiated-image-picker-option-inside-each-opened-lovelettercard",
+      "title": "Make the Love Letters (Page 5) photo slot reliably accept pasted images and provide a fallback for devices/browsers that do not support clipboard image paste (e.g., mobile) by adding an explicit user-initiated image picker option inside each opened LoveLetterCard.",
+      "reqIds": [
+        "REQ-46"
       ],
       "version": 1
     }

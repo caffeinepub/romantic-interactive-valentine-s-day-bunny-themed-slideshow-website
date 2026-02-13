@@ -31,11 +31,11 @@ export function AmbientOverlay() {
   if (prefersReducedMotion) return null;
 
   return (
-    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden" aria-hidden="true">
       {particles.map((particle) => (
         <div
           key={particle.id}
-          className="absolute animate-float-ambient opacity-30"
+          className="absolute animate-float-ambient opacity-30 pointer-events-none"
           style={{
             left: `${particle.x}%`,
             top: `${particle.y}%`,
@@ -44,9 +44,9 @@ export function AmbientOverlay() {
           }}
         >
           {particle.type === 'heart' ? (
-            <span className="text-2xl text-romantic-primary">💕</span>
+            <span className="text-2xl text-romantic-primary pointer-events-none">💕</span>
           ) : (
-            <span className="text-xl text-romantic-accent">✨</span>
+            <span className="text-xl text-romantic-accent pointer-events-none">✨</span>
           )}
         </div>
       ))}
